@@ -15,38 +15,38 @@ import { typeFromAST, DocumentNode } from 'graphql'
  * If the query cannot be parsed, returns undefined.
  */
 export function getQueryFacts(schema, documentAST: DocumentNode): any {
-  const variableToType = schema ? collectVariables(schema, documentAST) : null
+	const variableToType = schema ? collectVariables(schema, documentAST) : null
 
-  // Collect operations by their names.
-  const operations: any[] = []
-  documentAST.definitions.forEach(def => {
-    if (def.kind === 'OperationDefinition') {
-      operations.push(def)
-    }
-  })
+	// Collect operations by their names.
+	const operations: any[] = []
+	documentAST.definitions.forEach(def => {
+		if (def.kind === 'OperationDefinition') {
+			operations.push(def)
+		}
+	})
 
-  return { variableToType, operations }
+	return { variableToType, operations }
 }
 
 /**
  * Provided a schema and a document, produces a `variableToType` Object.
  */
 export function collectVariables(schema, documentAST) {
-  const variableToType = Object.create(null)
-  documentAST.definitions.forEach(definition => {
-    if (definition.kind === 'OperationDefinition') {
-      const variableDefinitions = definition.variableDefinitions
-      if (variableDefinitions) {
-        variableDefinitions.forEach(({ variable, type }) => {
-          const inputType = typeFromAST(schema, type)
-          if (inputType) {
-            variableToType[variable.name.value] = inputType
-          }
-        })
-      }
-    }
-  })
-  return variableToType
+	const variableToType = Object.create(null)
+	documentAST.definitions.forEach(definition => {
+		if (definition.kind === 'OperationDefinition') {
+			const variableDefinitions = definition.variableDefinitions
+			if (variableDefinitions) {
+				variableDefinitions.forEach(({ variable, type }) => {
+					const inputType = typeFromAST(schema, type)
+					if (inputType) {
+						variableToType[variable.name.value] = inputType
+					}
+				})
+			}
+		}
+	})
+	return variableToType
 }
 
 // function getDeepType(type) {

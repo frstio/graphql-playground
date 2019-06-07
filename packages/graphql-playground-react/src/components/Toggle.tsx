@@ -2,36 +2,36 @@ import * as React from 'react'
 import { css, styled } from '../styled'
 
 export interface ToggleProps {
-  choices: string[]
-  onChange: (choice: string, i: number) => void
-  activeChoice: string
+	choices: string[]
+	onChange: (choice: string, i: number) => void
+	activeChoice: string
 }
 
 const Toggle: React.SFC<ToggleProps> = ({
-  choices,
-  onChange,
-  activeChoice,
+	choices,
+	onChange,
+	activeChoice,
 }) => (
-  <Wrapper>
-    {choices.map((choice, i) => (
-      <Choice
-        active={choice === activeChoice}
-        key={choice}
-        // tslint:disable-next-line
-        onClick={() => onChange(choice, i)}
-      >
-        {choice}
-      </Choice>
-    ))}
-  </Wrapper>
+	<Wrapper>
+		{choices.map((choice, i) => (
+			<Choice
+				active={choice === activeChoice}
+				key={choice}
+				// tslint:disable-next-line
+				onClick={() => onChange(choice, i)}
+			>
+				{choice}
+			</Choice>
+		))}
+	</Wrapper>
 )
 
 const Wrapper = styled.div`
-  display: flex;
+	display: flex;
 `
 
 interface ChoiceProps {
-  active: boolean
+	active: boolean
 }
 
 // prettier-ignore

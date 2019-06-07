@@ -2,38 +2,44 @@ import { createSelector } from 'reselect'
 import { makeWorkspace } from '../workspace/reducers'
 
 function getSelectedWorkspaceId(state) {
-  return state.get('selectedWorkspace')
+	return state.get('selectedWorkspace')
 }
 function getSelectedWorkspace(state) {
-  return (
-    state.getIn(['workspaces', getSelectedWorkspaceId(state)]) ||
-    makeWorkspace('')
-  )
+	return (
+		state.getIn(['workspaces', getSelectedWorkspaceId(state)]) ||
+		makeWorkspace('')
+	)
 }
 
 export const getSessionsState = createSelector(
-  [getSelectedWorkspace],
-  workspace => workspace.get('sessions'),
+	[getSelectedWorkspace],
+	workspace => workspace.get('sessions'),
 )
 
-export const getSelectedSession = createSelector([getSessionsState], state => {
-  const id = getSelectedSessionId(state)
-  const session = state.getIn(['sessions', id])
-  return session
-})
+export const getSelectedSession = createSelector(
+	[getSessionsState],
+	state => {
+		const id = getSelectedSessionId(state)
+		const session = state.getIn(['sessions', id])
+		return session
+	},
+)
 
 export const getSelectedSessionId = state =>
-  state.selectedSessionId && state.selectedSessionId !== ''
-    ? state.selectedSessionId
-    : state.sessions.first().id
+	state.selectedSessionId && state.selectedSessionId !== ''
+		? state.selectedSessionId
+		: state.sessions.first().id
 
 export const getSelectedSessionIdFromRoot = createSelector(
-  [getSelectedSession],
-  state => state.get('id'),
+	[getSelectedSession],
+	state => state.get('id'),
 )
 
 const makeSessionSelector = prop => {
-  return createSelector([getSelectedSession], session => session.get(prop))
+	return createSelector(
+		[getSelectedSession],
+		session => session.get(prop),
+	)
 }
 
 export const getScrollTop = makeSessionSelector('scrollTop')
@@ -63,125 +69,137 @@ export const getAbsolutePath = makeSessionSelector('absolutePath')
 export const getIsSettingsTab = makeSessionSelector('isSettingsTab')
 export const getIsConfigTab = makeSessionSelector('isConfigTab')
 export const getCurrentQueryStartTime = makeSessionSelector(
-  'currentQueryStartTime',
+	'currentQueryStartTime',
 )
 export const getCurrentQueryEndTime = makeSessionSelector('currentQueryEndTime')
 export const getIsReloadingSchema = makeSessionSelector('isReloadingSchema')
 export const getIsPollingSchema = createSelector(
-  [getEndpoint, getSettings],
-  (endpoint, settings) => {
-    const json = JSON.parse(settings)
-    try {
-      const isPolling =
-        json['schema.polling.enable'] &&
-        endpoint.match(`/${json['schema.polling.endpointFilter']}`) &&
-        true
-      return isPolling
-    } catch (e) {
-      return false
-    }
-  },
+	[getEndpoint, getSettings],
+	(endpoint, settings) => {
+		const json = JSON.parse(settings)
+		try {
+			const isPolling =
+				json['schema.polling.enable'] &&
+				endpoint.match(`/${json['schema.polling.endpointFilter']}`) &&
+				true
+			return isPolling
+		} catch (e) {
+			return false
+		}
+	},
 )
 
 export const getResponseExtensions = makeSessionSelector('responseExtensions')
 export const getQueryVariablesActive = makeSessionSelector(
-  'queryVariablesActive',
+	'queryVariablesActive',
 )
 export const getEndpointUnreachable = makeSessionSelector('endpointUnreachable')
 export const getEditorFlex = makeSessionSelector('editorFlex')
 export const getVariableEditorOpen = makeSessionSelector('variableEditorOpen')
 export const getVariableEditorHeight = makeSessionSelector(
-  'variableEditorHeight',
+	'variableEditorHeight',
 )
 export const getResponseTracingOpen = makeSessionSelector('responseTracingOpen')
 export const getResponseTracingHeight = makeSessionSelector(
-  'responseTracingHeight',
+	'responseTracingHeight',
 )
 export const getDocExplorerWidth = makeSessionSelector('docExplorerWidth')
 export const getNextQueryStartTime = makeSessionSelector('nextQueryStartTime')
 export const getTracingSupported = makeSessionSelector('tracingSupported')
 
 function getSettings(state) {
-  return state.getIn(['settingsString'])
+	return state.getIn(['settingsString'])
 }
 
-export const getTabWidth = createSelector([getSettings], settings => {
-  try {
-    const json = JSON.parse(settings)
-    return json['prettier.tabWidth'] || 2
-  } catch (e) {
-    //
-  }
+export const getTabWidth = createSelector(
+	[getSettings],
+	settings => {
+		try {
+			const json = JSON.parse(settings)
+			return json['prettier.tabWidth'] || 2
+		} catch (e) {
+			//
+		}
 
-  return 2
-})
+		return 2
+	},
+)
 
-export const getUseTabs = createSelector([getSettings], settings => {
-  try {
-    const json = JSON.parse(settings)
-    return json['prettier.useTabs'] || false
-  } catch (e) {
-    //
-  }
+export const getUseTabs = createSelector(
+	[getSettings],
+	settings => {
+		try {
+			const json = JSON.parse(settings)
+			return json['prettier.useTabs'] || false
+		} catch (e) {
+			//
+		}
 
-  return false
-})
+		return false
+	},
+)
 
-export const getHeadersCount = createSelector([getHeaders], headers => {
-  try {
-    const json = JSON.parse(headers)
-    return Object.keys(json).length
-  } catch (e) {
-    //
-  }
+export const getHeadersCount = createSelector(
+	[getHeaders],
+	headers => {
+		try {
+			const json = JSON.parse(headers)
+			return Object.keys(json).length
+		} catch (e) {
+			//
+		}
 
-  return 0
-})
+		return 0
+	},
+)
 
 export const getParsedHeaders = createSelector(
-  [getSelectedSession],
-  getParsedHeadersFromSession,
+	[getSelectedSession],
+	getParsedHeadersFromSession,
 )
 
 export function getParsedHeadersFromSession(headers) {
-  try {
-    const json = JSON.parse(headers)
-    return json
-  } catch (e) {
-    //
-  }
+	try {
+		const json = JSON.parse(headers)
+		return json
+	} catch (e) {
+		//
+	}
 
-  return {}
+	return {}
 }
 
 export const getParsedVariables = createSelector(
-  [getSelectedSession],
-  getParsedVariablesFromSession,
+	[getSelectedSession],
+	getParsedVariablesFromSession,
 )
 
 export function getParsedVariablesFromSession(session) {
-  const variables = session.variables
+	const variables = session.variables
 
-  try {
-    const json = JSON.parse(variables)
-    return json
-  } catch (e) {
-    //
-  }
+	try {
+		const json = JSON.parse(variables)
+		return json
+	} catch (e) {
+		//
+	}
 
-  return {}
+	return {}
 }
 
 export const getTracing = createSelector(
-  [getResponseExtensions],
-  extensions => extensions && extensions.tracing,
+	[getResponseExtensions],
+	extensions => extensions && extensions.tracing,
 )
 
-export const getSessionsArray = createSelector([getSessionsState], state => {
-  const array = state
-    .get('sessions')
-    .toArray()
-    .map(arr => arr[1])
+export const getSessionsArray = createSelector(
+	[getSessionsState],
+	state => {
+		const array = state
+			.get('sessions')
+			.toArray()
+			.map(arr => arr[1])
 
-  return array
-})
+		return array
+	},
+)

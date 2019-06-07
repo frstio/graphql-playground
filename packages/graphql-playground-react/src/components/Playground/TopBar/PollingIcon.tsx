@@ -3,15 +3,15 @@ import { styled, keyframes, css } from '../../../styled/index'
 import BasePositioner from './Positioner'
 
 export interface Props {
-  animate: boolean
-  disabled?: boolean
-  onClick?: () => void
+	animate: boolean
+	disabled?: boolean
+	onClick?: () => void
 }
 
 const PollingIcon: React.SFC<Props> = props => (
-  <Positioner onClick={props.onClick} title="Polling Schema">
-    <Icon animate={props.animate} />
-  </Positioner>
+	<Positioner onClick={props.onClick} title="Polling Schema">
+		<Icon animate={props.animate} />
+	</Positioner>
 )
 
 export default PollingIcon
@@ -29,21 +29,21 @@ const pulse = keyframes`
 `
 
 const Positioner = styled(BasePositioner)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 `
 const Icon = styled.div`
-  display: block;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: ${p => p.theme.editorColours.pollingIcon};
-  box-shadow: 0 0 0 ${p => p.theme.editorColours.pollingIconShadow};
-  ${p =>
-    p.animate
-      ? css`
-          animation: ${pulse} 2s infinite;
-        `
-      : undefined};
+	display: block;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: ${p => p.theme.editorColours.pollingIcon};
+	box-shadow: 0 0 0 ${p => p.theme.editorColours.pollingIconShadow};
+	${p =>
+		p.animate
+			? css`
+					animation: ${pulse} 2s infinite;
+			  `
+			: undefined};
 `

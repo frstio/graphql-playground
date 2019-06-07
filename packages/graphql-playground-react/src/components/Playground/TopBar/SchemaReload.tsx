@@ -7,31 +7,31 @@ import { getIsReloadingSchema } from '../../../state/sessions/selectors'
 import { connect } from 'react-redux'
 
 export interface Props {
-  isPollingSchema: boolean
-  isReloadingSchema: boolean
-  onReloadSchema: () => any
-  settings: ISettings
+	isPollingSchema: boolean
+	isReloadingSchema: boolean
+	onReloadSchema: () => any
+	settings: ISettings
 }
 
 const SchemaReload = (props: Props) => {
-  if (props.isPollingSchema) {
-    return (
-      <Polling
-        interval={props.settings['schema.polling.interval']}
-        onReloadSchema={props.onReloadSchema}
-      />
-    )
-  }
-  return (
-    <ReloadIcon
-      isReloadingSchema={props.isReloadingSchema}
-      onReloadSchema={props.onReloadSchema}
-    />
-  )
+	if (props.isPollingSchema) {
+		return (
+			<Polling
+				interval={props.settings['schema.polling.interval']}
+				onReloadSchema={props.onReloadSchema}
+			/>
+		)
+	}
+	return (
+		<ReloadIcon
+			isReloadingSchema={props.isReloadingSchema}
+			onReloadSchema={props.onReloadSchema}
+		/>
+	)
 }
 
 const mapStateToProps = createStructuredSelector({
-  isReloadingSchema: getIsReloadingSchema,
+	isReloadingSchema: getIsReloadingSchema,
 })
 
 export default connect(mapStateToProps)(SchemaReload)

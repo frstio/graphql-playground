@@ -5,24 +5,24 @@ import { ComponentClass } from 'react' // tslint:disable-line
 import { ThemeInterface, theme } from './theme'
 
 const {
-  default: styled,
-  css,
-  injectGlobal,
-  keyframes,
-  ThemeProvider,
-  withTheme,
-  createGlobalStyle,
+	default: styled,
+	css,
+	injectGlobal,
+	keyframes,
+	ThemeProvider,
+	withTheme,
+	createGlobalStyle,
 } = styledComponents as ThemedStyledComponentsModule<ThemeInterface>
 
 export {
-  css,
-  injectGlobal,
-  keyframes,
-  ThemeProvider,
-  theme,
-  withTheme,
-  createGlobalStyle,
-  ThemeInterface,
+	css,
+	injectGlobal,
+	keyframes,
+	ThemeProvider,
+	theme,
+	withTheme,
+	createGlobalStyle,
+	ThemeInterface,
 }
 export default styled
 
