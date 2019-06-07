@@ -1,6 +1,6 @@
 {
     "name": "@frstio/graphql-playground-react",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "main": "./lib/lib.js",
     "typings": "./lib/lib.d.ts",
     "description": "GraphQL IDE for better development workflows (GraphQL Subscriptions, interactive docs & collaboration).",
@@ -31,6 +31,7 @@
         "precommit": "lint-staged",
         "prettier": "prettier --single-quote --no-semi --trailing-comma all --write *.{ts,tsx} 'src/**/*.{ts,tsx}'"
     },
+    "proxy": "http://localhost:3001",
     "files": [
         "build",
         "lib",
@@ -47,6 +48,7 @@
         "@types/jest": "22.2.3",
         "@types/node": "10.1.4",
         "@types/react": "16.3.14",
+        "@types/react-router-dom": "^4.3.3",
         "@types/zen-observable": "^0.5.3",
         "babel-cli": "6.26.0",
         "babel-core": "6.26.3",
@@ -108,7 +110,7 @@
     "dependencies": {
         "@types/graphql": "^14.2.0",
         "@types/isomorphic-fetch": "0.0.35",
-        "@types/lodash": "^4.14.134",
+        "@types/lodash.mapvalues": "^4.6.6",
         "@types/lru-cache": "^4.1.1",
         "@types/react-modal": "^3.8.2",
         "@types/redux-immutable": "^4.0.1",
@@ -129,8 +131,8 @@
         "js-yaml": "^3.10.0",
         "json-stable-stringify": "^1.0.1",
         "keycode": "^2.1.9",
-        "lodash": "^4.17.11",
         "lodash.debounce": "^4.0.8",
+        "lodash.mapvalues": "^4.6.0",
         "markdown-it": "^8.4.1",
         "marked": "^0.3.19",
         "prettier": "^1.13.0",

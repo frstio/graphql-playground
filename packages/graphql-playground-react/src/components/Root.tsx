@@ -8,12 +8,7 @@ export default class Root extends React.Component<{}, {}> {
 			<BrowserRouter>
 				<Switch>
 					<Route path="/v2/:id" component={GraphQLBinApp} />
-					<Redirect
-						exact={true}
-						from="/"
-						to="/v2/new"
-						component={GraphQLBinApp}
-					/>
+					<Redirect exact={true} from="/" to="/v2/new" />
 					<Route path="*" component={RedirectToOldPlayground} />
 				</Switch>
 			</BrowserRouter>
