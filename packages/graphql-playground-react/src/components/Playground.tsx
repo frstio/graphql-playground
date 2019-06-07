@@ -49,7 +49,7 @@ import { Session } from '../state/sessions/reducers'
 import { getWorkspaceId } from './Playground/util/getWorkspaceId'
 import { getSettings, getSettingsString } from '../state/workspace/reducers'
 import { Backoff } from './Playground/util/fibonacci-backoff'
-import { debounce } from 'lodash'
+import debounce from 'lodash.debounce'
 import { cachedPrintSchema } from './util'
 
 export interface Response {

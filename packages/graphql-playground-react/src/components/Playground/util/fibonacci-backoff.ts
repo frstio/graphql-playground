@@ -1,4 +1,4 @@
-import { memoize } from 'lodash'
+import memoize from 'lodash.memoize'
 const fibonacci = memoize(num => {
 	if (num <= 1) {
 		return 1

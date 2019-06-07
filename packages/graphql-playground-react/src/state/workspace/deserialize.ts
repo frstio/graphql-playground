@@ -3,7 +3,7 @@ import { Session, SessionState, ResponseRecord } from '../sessions/reducers'
 import { SharingState } from '../sharing/reducers'
 import { Map, OrderedMap, List, fromJS } from 'immutable'
 import { GeneralState } from '../general/reducers'
-import { mapValues } from 'lodash'
+import mapValues from 'lodash.mapvalues'
 import { RootState, Workspace, normalizeSettingsString } from './reducers'
 import { AppHistory, AppHistoryItem } from '../appHistory/reducers'
 

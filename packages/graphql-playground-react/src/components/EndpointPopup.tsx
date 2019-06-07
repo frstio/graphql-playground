@@ -1,7 +1,7 @@
 import * as React from 'react'
 import fetch from 'isomorphic-fetch'
 import Popup from './Popup'
-import { throttle } from 'lodash'
+import throttle from 'lodash.throttle'
 import { Button } from './Button'
 import { styled, css } from '../styled'
 

@@ -1,4 +1,4 @@
-import { debounce } from 'lodash'
+import debounce from 'lodash.debounce'
 import { deserializePersistedState } from './workspace/deserialize'
 
 export function serializeState(store) {
