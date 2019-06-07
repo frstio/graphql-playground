@@ -115,7 +115,7 @@ interface TabsProps {
 	isApp?: boolean
 }
 
-const Tabs = styled<TabsProps, 'div'>('div')`
+const Tabs = styled.div<TabsProps>`
 	display: flex;
 	align-items: center;
 	margin-top: 16px;
@@ -126,22 +126,22 @@ interface PlusProps {
 	sorting: boolean
 }
 
-const Plus = styled<PlusProps, 'div'>('div')`
-  -webkit-app-region: no-drag;
-  box-sizing: border-box;
-  display: flex;
-  visibility: ${p => (p.sorting ? 'hidden' : 'visible')}
-  height: 43px;
-  width: 43px;
-  border-radius: 2px;
-  border-bottom: 2px solid ${p => p.theme.editorColours.navigationBar};
-  background: ${p => p.theme.editorColours.tabInactive};
-  justify-content: center;
-  align-items: center;
-  svg {
-    stroke: ${p => p.theme.editorColours.icon};
-  }
-  &:hover {
-    background: ${p => p.theme.editorColours.tab};
-  }
+const Plus = styled.div<PlusProps>`
+	-webkit-app-region: no-drag;
+	box-sizing: border-box;
+	display: flex;
+	visibility: ${p => (p.sorting ? 'hidden' : 'visible')};
+	height: 43px;
+	width: 43px;
+	border-radius: 2px;
+	border-bottom: 2px solid ${p => p.theme.editorColours.navigationBar};
+	background: ${p => p.theme.editorColours.tabInactive};
+	justify-content: center;
+	align-items: center;
+	svg {
+		stroke: ${p => p.theme.editorColours.icon};
+	}
+	&:hover {
+		background: ${p => p.theme.editorColours.tab};
+	}
 `

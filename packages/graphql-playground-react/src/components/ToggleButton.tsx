@@ -34,7 +34,7 @@ interface SliderProps {
 	checked: boolean
 }
 
-const Slider = styled<SliderProps, 'div'>('div')`
+const Slider = styled.div<SliderProps>`
 	position: absolute;
 	top: 0;
 	left: 0;

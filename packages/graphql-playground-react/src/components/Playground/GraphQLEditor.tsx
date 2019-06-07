@@ -68,7 +68,6 @@ import {
 import { ResponseRecord } from '../../state/sessions/reducers'
 import { getDocsOpen } from '../../state/docs/selectors'
 import { changeWidthDocs } from '../../state/docs/actions'
-
 /**
  * The top-level React component for GraphQLEditor, intended to encompass the entire
  * browser viewport.
@@ -701,7 +700,7 @@ interface DrawerProps {
 	height: number
 }
 
-const BottomDrawer = styled<DrawerProps, 'div'>('div')`
+const BottomDrawer = styled.div<DrawerProps>`
 	display: flex;
 	background: #0b1924;
 	flex-direction: column;
@@ -741,14 +740,14 @@ const VariableEditor = styled(BottomDrawer)`
 	}
 `
 
-const VariableEditorTitle = styled<TitleProps>(({ isOpen, ...rest }) => (
+const VariableEditorTitle = styled(({ isOpen, ...rest }) => (
 	<BottomDrawerTitle {...rest} />
 ))`
 	cursor: ${p => (p.isOpen ? 'row-resize' : 'n-resize')};
 	background: ${p => p.theme.editorColours.leftDrawerBackground};
 `
 
-const VariableEditorSubtitle = styled<TitleProps, 'span'>('span')`
+const VariableEditorSubtitle = styled.span<TitleProps>`
 	margin-right: 10px;
 	cursor: pointer;
 	color: ${p =>
@@ -764,7 +763,7 @@ const ResponseTracking = styled(BottomDrawer)`
 	background: ${p => p.theme.editorColours.rightDrawerBackground};
 `
 
-const ResponseTrackingTitle = styled<TitleProps>(({ isOpen, ...rest }) => (
+const ResponseTrackingTitle = styled(({ isOpen, ...rest }) => (
 	<BottomDrawerTitle {...rest} />
 ))`
 	text-align: right;
@@ -777,7 +776,7 @@ interface QueryProps {
 	flex: number
 }
 
-const QueryWrap = styled<QueryProps, 'div'>('div')`
+const QueryWrap = styled.div<QueryProps>`
 	position: relative;
 	display: flex;
 	flex-direction: column;

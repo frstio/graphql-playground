@@ -41,7 +41,7 @@ interface SidebarItemProps {
 	deep?: boolean
 }
 
-const ListItem = styled<SidebarItemProps, 'div'>('div')`
+const ListItem = styled.div<SidebarItemProps>`
 	padding: 10px 10px 10px ${p => (p.deep ? '43px' : '38px')};
 	word-break: break-word;
 	font-weight: 600;
@@ -62,7 +62,7 @@ const ListItem = styled<SidebarItemProps, 'div'>('div')`
 	}
 `
 
-const Count = styled<SidebarItemProps, 'div'>('div')`
+const Count = styled.div<SidebarItemProps>`
 	border-radius: 6px;
 	min-width: 18px;
 	min-height: 18px;

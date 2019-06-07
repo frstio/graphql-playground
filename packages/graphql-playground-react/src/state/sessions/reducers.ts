@@ -24,7 +24,7 @@ import {
 } from './actions'
 import { getSelectedSessionId } from './selectors'
 import { getDefaultSession, defaultQuery } from '../../constants'
-import * as cuid from 'cuid'
+import cuid from 'cuid'
 import { formatError } from './fetchingSagas'
 import { arrayMove } from 'react-sortable-hoc'
 

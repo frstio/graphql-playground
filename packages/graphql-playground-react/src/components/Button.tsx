@@ -22,7 +22,7 @@ interface ButtonProps {
 	purple?: boolean
 }
 
-export const ButtonBox = styled<ButtonProps, 'div'>('div')`
+export const ButtonBox = styled.div<ButtonProps>`
 	display: flex;
 	align-items: center;
 

@@ -279,7 +279,7 @@ interface TabsProps {
 	open: boolean
 }
 
-const Tabs = styled<TabsProps, 'div'>('div')`
+const Tabs = styled.div<TabsProps>`
 	background: white;
 	outline: none;
 	box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);

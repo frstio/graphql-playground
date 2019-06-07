@@ -60,7 +60,7 @@ interface DocsValueProps {
 	first: boolean
 }
 
-const DocsValue = styled<DocsValueProps, 'div'>('div')`
+const DocsValue = styled.div<DocsValueProps>`
 	margin-top: ${p => (p.first ? 0 : 6)}px;
 	.field-name {
 		padding: 0 16px;

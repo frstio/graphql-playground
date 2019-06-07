@@ -6,7 +6,7 @@
  *  LICENSE file in the root directory of this source tree.
  */
 
-import * as marked from 'marked'
+import marked from 'marked'
 
 /**
  * Render a custom UI for CodeMirror's hint which includes additional info

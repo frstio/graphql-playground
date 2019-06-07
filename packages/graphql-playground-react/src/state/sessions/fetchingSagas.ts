@@ -33,7 +33,7 @@ import {
 } from './selectors'
 import { SchemaFetcher } from '../../components/Playground/SchemaFetcher'
 import { getSelectedWorkspaceId, getSettings } from '../workspace/reducers'
-import * as cuid from 'cuid'
+import cuid from 'cuid'
 import { Session, ResponseRecord } from './reducers'
 import { addHistoryItem } from '../history/actions'
 import { safely } from '../../utils'

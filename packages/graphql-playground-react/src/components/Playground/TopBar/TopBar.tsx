@@ -203,7 +203,7 @@ interface UrlBarProps {
 	active: boolean
 }
 
-const UrlBar = styled<UrlBarProps, 'input'>('input')`
+const UrlBar = styled.input<UrlBarProps>`
 	background: ${p => p.theme.editorColours.button};
 	border-radius: 4px;
 	color: ${p =>

@@ -31,7 +31,7 @@ export interface TabProps {
 	activeColor: string
 }
 
-const Tab = styled<TabProps, 'div'>('div')`
+const Tab = styled.div<TabProps>`
 	z-index: ${p => (p.active ? 10 : 2)};
 	padding: 8px 8px 8px 8px;
 	border-radius: 2px 2px 0px 0px;

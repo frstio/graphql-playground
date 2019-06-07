@@ -156,7 +156,7 @@ interface TabItemProps {
 	hasCircle?: boolean
 }
 
-const TabItem = styled<TabItemProps, 'div'>('div')`
+const TabItem = styled.div<TabItemProps>`
 	-webkit-app-region: no-drag;
 	flex: 0 0 auto;
 	display: flex;
@@ -183,7 +183,7 @@ const TabItem = styled<TabItemProps, 'div'>('div')`
 	}
 `
 
-const OperationName = styled<TabItemProps, 'div'>('div')`
+const OperationName = styled.div<TabItemProps>`
 	opacity: ${p => (p.active ? 1 : 0.5)};
 	background: transparent;
 	color: ${p => p.theme.editorColours.tabText};
@@ -204,7 +204,7 @@ const OperationNameInput = styled(AutosizeInput)`
 	}
 `
 
-const Icons = styled<TabItemProps, 'div'>('div')`
+const Icons = styled.div<TabItemProps>`
 	display: flex;
 	align-items: center;
 	opacity: ${p => (p.active ? 1 : 0.5)};
@@ -254,7 +254,7 @@ const Circle = styled.div`
 	background: ${p => p.theme.editorColours.circle};
 `
 
-const Close = styled<TabItemProps, 'div'>('div')`
+const Close = styled.div<TabItemProps>`
 	position: relative;
 	display: flex;
 	margin-left: 10px;

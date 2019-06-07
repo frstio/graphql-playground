@@ -75,7 +75,7 @@ const mapStateToProps = createStructuredSelector({
 
 export default connect(mapStateToProps)(Results)
 
-const ResultWindow = styled<ResultWrapperProps, 'div'>('div')`
+const ResultWindow = styled.div<ResultWrapperProps>`
 	flex: 1;
 	height: ${props => (props.isSubscription ? 'auto' : '100%')};
 	position: relative;
@@ -111,7 +111,7 @@ const ResultWindow = styled<ResultWrapperProps, 'div'>('div')`
 	}
 `
 
-const Response = styled<ResultWrapperProps, 'div'>('div')`
+const Response = styled.div<ResultWrapperProps>`
 	position: relative;
 	display: flex;
 	flex: 1;
@@ -148,7 +148,7 @@ interface ResultWrapperProps {
 	isSubscription: boolean
 }
 
-const ResultWrapper = styled<ResultWrapperProps, 'div'>('div')`
+const ResultWrapper = styled.div<ResultWrapperProps>`
 	display: flex;
 	flex: 1;
 	height: ${props => (props.isSubscription ? `auto` : '100%')};

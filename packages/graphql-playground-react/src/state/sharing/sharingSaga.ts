@@ -1,7 +1,7 @@
 import { takeEvery, ForkEffect, select, put } from 'redux-saga/effects'
 import { getEndpoint } from '../sessions/selectors'
 import { setShareUrl } from './actions'
-import * as cuid from 'cuid'
+import cuid from 'cuid'
 import { getSharingState } from './selectors'
 import { Map } from 'immutable'
 import { safely } from '../../utils'

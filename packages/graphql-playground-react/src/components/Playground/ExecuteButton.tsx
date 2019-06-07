@@ -211,7 +211,7 @@ interface ButtonProps {
 	isRunning: boolean
 }
 
-const Button = styled<ButtonProps, 'div'>('div')`
+const Button = styled.div<ButtonProps>`
 	width: 60px;
 	height: 60px;
 

@@ -26,12 +26,12 @@ interface ColumnProps {
 	verticalScroll: boolean
 }
 
-const Column = styled<ColumnProps, 'div'>('div')`
-  display: flex;
-  flex: 0 0 auto;
-  flex-flow: column;
-  padding-bottom: 20px;
-  border-right: 1px solid ${p => p.theme.colours.black10};
-  overflow-x: ${p => (p.verticalScroll ? 'hidden' : 'auto')}
-  overflow-y: ${p => (p.verticalScroll ? 'scroll' : 'auto')}
+const Column = styled.div<ColumnProps>`
+	display: flex;
+	flex: 0 0 auto;
+	flex-flow: column;
+	padding-bottom: 20px;
+	border-right: 1px solid ${p => p.theme.colours.black10};
+	overflow-x: ${p => (p.verticalScroll ? 'hidden' : 'auto')};
+	overflow-y: ${p => (p.verticalScroll ? 'scroll' : 'auto')};
 `

@@ -79,7 +79,7 @@ const Positioner = styled(BasePositioner)`
 	cursor: ${({ disabled = false }) => (disabled ? 'auto' : 'pointer')};
 	transform: rotateY(180deg);
 `
-const Circle = styled<Props, 'circle'>('circle')`
+const Circle = styled.circle<Props>`
 	fill: none;
 	stroke: ${p => p.theme.editorColours.icon};
 	stroke-dasharray: 37.68;
@@ -89,7 +89,7 @@ const Circle = styled<Props, 'circle'>('circle')`
 	animation: ${refreshFrames} 2s linear ${p => (p.animate ? 'infinite' : '')};
 `
 
-const Icon = styled<Props, 'path'>('path')`
+const Icon = styled.path<Props>`
 	transition: opacity 0.3s ease-in-out;
 	opacity: ${p => (p.animate ? 0 : 1)};
 	transform-origin: 9.5px 10px;

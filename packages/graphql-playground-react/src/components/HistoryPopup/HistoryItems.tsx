@@ -90,7 +90,7 @@ interface ItemProps {
 	active: boolean
 }
 
-const HistoryItem = styled<ItemProps, 'div'>('div')`
+const HistoryItem = styled.div<ItemProps>`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;

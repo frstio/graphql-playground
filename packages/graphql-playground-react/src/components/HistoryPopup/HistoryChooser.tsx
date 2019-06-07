@@ -58,7 +58,7 @@ interface FilterProps {
 	active: boolean
 }
 
-const Filter = styled<FilterProps, 'div'>('div')`
+const Filter = styled.div<FilterProps>`
 	box-sizing: content-box;
 	height: 24px;
 	z-index: ${p => (p.active ? 2 : 0)};

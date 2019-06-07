@@ -31,7 +31,7 @@ const SDLColumn = ({ children, width = columnWidth }: SDLColumnProps) => {
 
 export { SDLColumn }
 
-const Column = styled<SDLColumnProps, 'div'>('div')`
+const Column = styled.div<SDLColumnProps>`
 	display: flex;
 	flex: 1 0 auto;
 	flex-flow: column;

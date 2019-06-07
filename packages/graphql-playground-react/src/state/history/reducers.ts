@@ -1,6 +1,6 @@
 import { OrderedMap, List } from 'immutable'
 import { handleActions } from 'redux-actions'
-import * as cuid from 'cuid'
+import cuid from 'cuid'
 import { SessionStateProps } from '../sessions/reducers'
 
 export type HistoryState = OrderedMap<string, SessionStateProps>

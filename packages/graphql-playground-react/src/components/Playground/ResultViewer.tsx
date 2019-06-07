@@ -122,7 +122,7 @@ interface ResultProps {
 	isSubscription: boolean
 }
 
-const Result = styled<ResultProps, 'div'>('div')`
+const Result = styled.div<ResultProps>`
 	position: relative;
 	display: flex;
 	flex: 1;
