@@ -1,4 +1,11 @@
 {
-  "presets": ["es2015", "es2016", "react"],
-  "plugins": ["babel-plugin-styled-components"]
+	"presets": ["es2015", "es2016", "react", ["env", {
+		"targets": {
+			"node": "current"
+		}
+	}]],
+	"plugins": ["babel-plugin-styled-components", ["transform-runtime", {
+		"polyfill": false,
+		"regenerator": true
+	}]]
 }
