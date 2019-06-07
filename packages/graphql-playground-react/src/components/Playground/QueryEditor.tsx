@@ -236,10 +236,12 @@ export class QueryEditor extends React.PureComponent<Props & ReduxProps, {}> {
 
 	componentWillUnmount() {
 		this.updateSessionScrollTop()
-		this.editor.off('change', this.onEdit)
-		this.editor.off('keyup', this.onKeyUp)
-		this.editor.off('hasCompletion', this.onHasCompletion)
-		this.editor = null
+		if (this.editor) {
+			this.editor.off('change', this.onEdit)
+			this.editor.off('keyup', this.onKeyUp)
+			this.editor.off('hasCompletion', this.onHasCompletion)
+			this.editor = null
+		}
 	}
 
 	render() {
