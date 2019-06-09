@@ -333,4 +333,8 @@ const Editor = styled.div`
 		width: 100%;
 		background: ${p => p.theme.editorColours.editorBackground};
 	}
+
+	.CodeMirror-foldgutter {
+		background-color: #333333;
+	}
 `

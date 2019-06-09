@@ -149,7 +149,4 @@ const Result = styled.div<ResultProps>`
 		margin: 20px 0;
 		padding: 0;
 	}
-	.cm-string {
-		color: ${p => p.theme.editorColours.property} !important;
-	}
 `

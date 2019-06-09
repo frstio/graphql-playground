@@ -13,8 +13,7 @@ import {
 import {
 	darkColours,
 	lightColours,
-	darkEditorColours,
-	lightEditorColours,
+	frstEditorColours,
 	EditorColours,
 } from '../styled/theme'
 // import OldThemeProvider from './Theme/ThemeProvider'
@@ -370,9 +369,7 @@ class PlaygroundWrapper extends React.Component<
 						mode: theme,
 						colours: theme === 'dark' ? darkColours : lightColours,
 						editorColours: {
-							...(theme === 'dark'
-								? darkEditorColours
-								: lightEditorColours),
+							...frstEditorColours,
 							...this.props.codeTheme,
 						},
 						settings: this.props.settings,

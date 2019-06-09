@@ -196,5 +196,5 @@ const DocsHeader = styled.div`
 const DocsDescription = styled(MarkdownContent)`
 	font-size: 14px;
 	padding: 0 16px 20px 16px;
-	color: rgba(0, 0, 0, 0.5);
+	color: rgba(255, 255, 255, 0.5);
 `

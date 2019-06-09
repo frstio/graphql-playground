@@ -82,18 +82,6 @@ const ResultWindow = styled.div<ResultWrapperProps>`
 	overflow: ${props => (props.isSubscription ? 'auto' : 'visible')};
 	max-height: none !important;
 
-	.cm-string {
-		color: rgb(41, 185, 115);
-	}
-
-	.cm-def {
-		color: rgb(241, 143, 1);
-	}
-
-	.cm-property {
-		color: rgb(51, 147, 220);
-	}
-
 	&::-webkit-scrollbar {
 		display: none;
 	}

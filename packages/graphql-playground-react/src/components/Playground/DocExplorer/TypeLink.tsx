@@ -266,14 +266,13 @@ const DocsCategoryItem = styled.div<DocsCategoryItemProps>`
 	overflow: auto;
 	font-size: 14px;
 	transition: 0.1s background-color;
-	background: ${p =>
-		p.active ? p.theme.colours.black07 : p.theme.colours.white};
 
 	cursor: ${p => (p.clickable ? 'pointer' : 'select')};
+	color: ${p => p.theme.editorColours.punctuation};
 
 	&:hover {
 		color: ${p => p.theme.colours.white};
-		background: #2a7ed3;
+		background: #298029;
 		.field-name,
 		.type-name,
 		.arg-name,
@@ -298,7 +297,7 @@ const IconBox = styled.div`
 `
 
 const DefaultValue = styled.span`
-	color: ${p => p.theme.colours.black30};
+	color: ${p => p.theme.editorColours.punctuation};
 	span {
 		color: #1f61a9;
 	}

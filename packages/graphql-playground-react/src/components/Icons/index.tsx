@@ -172,7 +172,7 @@ export const Triangle = (props: IProps) => (
 	<Svg width={6} height={7} viewBox="40 0 6 7" {...props}>
 		<polygon
 			stroke="none"
-			fill="rgba(0, 0, 0, .2)"
+			fill="rgba(255, 255, 255, .2)"
 			fillRule="evenodd"
 			points="40 7 40 0 46 3.5"
 		/>

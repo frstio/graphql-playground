@@ -161,13 +161,12 @@ const TabItem = styled.div<TabItemProps>`
 	flex: 0 0 auto;
 	display: flex;
 	align-items: center;
-	height: 43px;
+	height: 36px;
 	padding: 10px;
 	padding-top: 9px;
 	margin-right: 10px;
-	font-size: 14px;
+	font-size: 11px;
 	border-radius: 2px;
-	border-bottom: 2px solid ${p => p.theme.editorColours.navigationBar};
 	box-sizing: border-box;
 	cursor: pointer;
 	user-select: none;
@@ -187,7 +186,7 @@ const OperationName = styled.div<TabItemProps>`
 	opacity: ${p => (p.active ? 1 : 0.5)};
 	background: transparent;
 	color: ${p => p.theme.editorColours.tabText};
-	font-size: 14px;
+	font-size: 11px;
 	margin-left: 2px;
 	display: inline;
 	letter-spacing: 0.53px;
@@ -216,8 +215,8 @@ const QueryTypes = styled.div`
 `
 
 const QueryType = styled.div`
-	height: 22px;
-	width: 22px;
+	height: 16px;
+	width: 16px;
 	display: flex;
 	align-items: center;
 	justify-content: center;

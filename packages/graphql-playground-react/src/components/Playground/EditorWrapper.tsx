@@ -269,7 +269,7 @@ const EditorWrapper = styled.div`
 		white-space: nowrap;
 	}
 	.CodeMirror-linenumbers {
-		background: ${p => p.theme.editorColours.editorBackground};
+		background: #333333;
 	}
 	.CodeMirror-linenumber {
 		font-family: Open Sans, sans-serif;
@@ -354,9 +354,6 @@ const EditorWrapper = styled.div`
 		overflow: hidden;
 		/* padding-bottom: 30px; */
 		position: relative;
-		&:hover {
-			overflow: scroll !important;
-		}
 	}
 	.CodeMirror-sizer {
 		border-right: 30px solid transparent;

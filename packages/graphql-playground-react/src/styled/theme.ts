@@ -74,6 +74,7 @@ export interface EditorColours {
 	navigationBarText: string
 	editorBackground: string
 	resultBackground: string
+	dragBarColor?: string
 	leftDrawerBackground: string
 	rightDrawerBackground: string
 	drawerText: string
@@ -96,6 +97,65 @@ export interface EditorColours {
 	circle: string
 	subscriptionTimeBoaderTop: string
 	subscriptionTimeText: string
+}
+
+export const frstEditorColours: EditorColours = {
+	property: 'rgb(129, 173, 185)',
+	comment: '#999',
+	punctuation: 'rgb(216, 207, 132)',
+	keyword: 'rgb(124, 243, 255)',
+	def: 'rgb(224, 128, 228)',
+	qualifier: '#1c92a9',
+	attribute: 'rgb(226, 149, 255)',
+	number: '#2882F9',
+	string: 'rgb(151, 190, 123)',
+	builtin: '#d47509',
+	string2: '#0b7fc7',
+	variable: 'rgb(255, 64, 170)',
+	meta: '#b33086',
+	atom: 'rgb(213, 234, 108)',
+	ws: 'rgba(255, 255, 255, 0.4)',
+	selection: 'rgba(255, 255, 255, 0.1)',
+	cursorColor: 'rgba(255, 255, 255, 0.4)',
+	text: '#fff',
+	textInactive: 'rgba(255, 255, 255, 0.6)',
+	background: '#191B20',
+	sidebarTop: '#0f202d',
+	sidebar: '#172b3a',
+	sidebarBottom: '#172b3a',
+	sidebarItemActive: 'rgb(23, 42, 58)',
+	sidebarItemSide: '#27ae60',
+	sidebarItemSessions: 'rgba(255, 255, 255, 0.05)',
+	tab: '#333333',
+	tabInactive: '#222222',
+	tabText: '#fff',
+	navigationBar: '#282828',
+	navigationBarText: 'rgba(255, 255, 255, 0.6)',
+	editorBackground: '#27292B',
+	resultBackground: '#27292B',
+	dragBarColor: '#333333',
+	leftDrawerBackground: '#282828',
+	rightDrawerBackground: '#0b1924',
+	drawerText: 'rgba(255,255,255,0.6)',
+	drawerTextInactive: '#555e66',
+	executeButton: 'rgb(185, 191, 196)',
+	executeButtonBorder: 'rgb(11, 20, 28)',
+	executeButtonHover: 'rgb(195, 201, 206)',
+	executeButtonSubscription: '#f25c54',
+	executeButtonSubscriptionHover: '#f36c65',
+	icon: 'rgb(74, 85, 95)',
+	iconHover: 'rgba(255, 255, 255, 0.6)',
+	pollingIcon: 'rgba(139, 149, 156, 1)',
+	pollingIconShadow: 'rgba(139, 149, 156, 0.4)',
+	button: '#298029',
+	buttonHover: '#3FC63F',
+	buttonText: 'rgba(255,255,255,1)',
+	buttonWorkspace: '#b9bfc4',
+	buttonWorkspaceHover: '#a4acb2',
+	buttonWorkspaceText: 'rgb(23, 42, 58)',
+	circle: 'rgba(255, 255, 255, 0.4)',
+	subscriptionTimeBoaderTop: 'rgba(255, 255, 255, 0.2)',
+	subscriptionTimeText: 'rgba(255, 255, 255, 0.5)',
 }
 
 export const darkColours: Colours = {
@@ -345,6 +405,6 @@ export const theme: any = {
 	colours: darkColours,
 	sizes,
 	shorthands,
-	editorColours: darkEditorColours,
+	editorColours: frstEditorColours,
 	settings: defaultSettings,
 }

@@ -3,7 +3,7 @@ import { styled } from '../../../styled/index'
 import copy from 'copy-to-clipboard'
 
 import Share from '../../Share'
-import SchemaReload from './SchemaReload'
+// import SchemaReload from './SchemaReload'
 import { createStructuredSelector } from 'reselect'
 import {
 	getEndpoint,
@@ -50,43 +50,12 @@ class TopBar extends React.Component<Props, {}> {
 	}
 
 	render() {
-		const { endpointUnreachable, settings } = this.props
+		// const { endpointUnreachable, settings } = this.props
 		return (
 			<TopBarWrapper>
 				<Button onClick={this.props.prettifyQuery}>Prettify</Button>
 				<Button onClick={this.openHistory}>History</Button>
-				<UrlBarWrapper>
-					<UrlBar
-						value={this.props.endpoint}
-						onChange={this.onChange}
-						onKeyDown={this.onKeyDown}
-						onBlur={this.props.refetchSchema}
-						disabled={this.props.fixedEndpoint}
-						active={!this.props.fixedEndpoint}
-					/>
-					{endpointUnreachable ? (
-						<ReachError>
-							<span>Server cannot be reached</span>
-							<Spinner />
-						</ReachError>
-					) : (
-						<div
-							style={{
-								display: 'flex',
-								flexDirection: 'row',
-								alignItems: 'center',
-								position: 'absolute',
-								left: '6px',
-							}}
-						>
-							<SchemaReload
-								settings={settings}
-								isPollingSchema={this.props.isPollingSchema}
-								onReloadSchema={this.props.refetchSchema}
-							/>
-						</div>
-					)}
-				</UrlBarWrapper>
+
 				<Button onClick={this.copyCurlToClipboard}>Copy CURL</Button>
 				{this.props.shareEnabled && (
 					<Share>
@@ -179,8 +148,8 @@ export const Button = styled.button`
 	flex: 0 0 auto;
 	letter-spacing: 0.53px;
 	font-size: 14px;
-	padding: 6px 9px 7px 10px;
-	margin-left: 6px;
+	padding: 5px 8px 6px 9px;
+	margin-left: 8px;
 
 	cursor: pointer;
 	transition: 0.1s linear background-color;
@@ -195,58 +164,56 @@ export const Button = styled.button`
 const TopBarWrapper = styled.div`
 	display: flex;
 	background: ${p => p.theme.editorColours.navigationBar};
-	padding: 10px 10px 4px;
+	padding: 10px;
 	align-items: center;
+	border-bottom: 1px solid rgb(24, 26, 31);
 `
 
-interface UrlBarProps {
-	active: boolean
-}
+// interface UrlBarProps {
+// 	active: boolean
+// }
 
-const UrlBar = styled.input<UrlBarProps>`
-	background: ${p => p.theme.editorColours.button};
-	border-radius: 4px;
-	color: ${p =>
-		p.active
-			? p.theme.editorColours.navigationBarText
-			: p.theme.editorColours.textInactive};
-	border: 1px solid ${p => p.theme.editorColours.background};
-	padding: 6px 12px;
-	padding-left: 30px;
-	font-size: 13px;
-	flex: 1;
-`
+// const UrlBar = styled.input<UrlBarProps>`
+// 	background: #27292b;
+// 	border-radius: 4px;
+// 	color: ${p => (p.active ? p.theme.editorColours.navigationBarText : p.theme.editorColours.textInactive)};
+// 	border: 1px solid ${p => p.theme.editorColours.background};
+// 	padding: 6px 12px;
+// 	padding-left: 30px;
+// 	font-size: 13px;
+// 	flex: 1;
+// `
 
-const UrlBarWrapper = styled.div`
-	flex: 1;
-	margin-left: 6px;
-	position: relative;
-	display: flex;
-	align-items: center;
-`
+// const UrlBarWrapper = styled.div`
+// 	flex: 1;
+// 	margin-left: 6px;
+// 	position: relative;
+// 	display: flex;
+// 	align-items: center;
+// `
 
-const ReachError = styled.div`
-	position: absolute;
-	right: 5px;
-	display: flex;
-	align-items: center;
-	color: #f25c54;
-`
+// const ReachError = styled.div`
+// 	position: absolute;
+// 	right: 5px;
+// 	display: flex;
+// 	align-items: center;
+// 	color: #f25c54;
+// `
 
-const Pulse = styled.div`
-	width: 16px;
-	height: 16px;
-	background-color: ${p => p.theme.editorColours.icon};
-	border-radius: 100%;
-`
+// const Pulse = styled.div`
+// 	width: 16px;
+// 	height: 16px;
+// 	background-color: ${p => p.theme.editorColours.icon};
+// 	border-radius: 100%;
+// `
 
-const SpinnerWrapper = styled.div`
-	position: relative;
-	margin: 6px;
-`
+// const SpinnerWrapper = styled.div`
+// 	position: relative;
+// 	margin: 6px;
+// `
 
-const Spinner = () => (
-	<SpinnerWrapper>
-		<Pulse />
-	</SpinnerWrapper>
-)
+// const Spinner = () => (
+// 	<SpinnerWrapper>
+// 		<Pulse />
+// 	</SpinnerWrapper>
+// )

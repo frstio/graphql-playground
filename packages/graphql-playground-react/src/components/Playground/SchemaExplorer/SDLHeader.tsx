@@ -117,13 +117,12 @@ const Title = styled.div`
 
 const Download = styled(Button)`
 	flex: 1;
-	color: ${p => styleHelper(p).download['text']};
-	background: ${p => styleHelper(p).download['button']};
+	color: ${p => p.theme.editorColours.buttonText};
+	background: ${p => p.theme.editorColours.button};
 	height: 32px;
 	border-radius: 2px;
 	&:hover {
-		color: ${p => styleHelper(p).buttonTextHover};
-		background-color: ${p => styleHelper(p).buttonHover};
+		background-color: ${p => p.theme.editorColours.buttonHover};
 	}
 `
 
@@ -133,7 +132,7 @@ const Option = styled(Download)`
 	margin-left: 0px;
 	border-radius: 0px;
 	z-index: 2000;
-	background: ${p => styleHelper(p).button};
+	background: ${p => p.theme.editorColours.button};
 `
 
 const styleHelper = p => {
