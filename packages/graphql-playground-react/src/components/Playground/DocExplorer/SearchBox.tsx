@@ -37,7 +37,7 @@ export default class SearchBox extends React.Component<Props, State> {
 					height={16}
 					width={16}
 					strokeWidth={3}
-					color={'rgba(0, 0, 0, 0.3)'}
+					color={'rgba(255, 255, 255, 0.3)'}
 				/>
 				<Input
 					onChange={this.handleChange}
@@ -82,13 +82,16 @@ const Label = styled.div`
 	align-items: center;
 	padding: 12px 14px 13px 15px;
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-	background: ${p => p.theme.colours.white};
+	background: #27292b;
 `
 
 const Input = styled.input`
 	font-size: 16px;
 	margin-left: 10px;
+	background: #27292b;
+	color: white;
+	caret-color: white;
 	&::placeholder {
-		color: ${p => p.theme.colours.black30};
+		color: rgba(255, 255, 255, 0.6);
 	}
 `

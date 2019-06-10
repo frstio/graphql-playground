@@ -27,6 +27,7 @@ interface ColumnProps {
 }
 
 const Column = styled.div<ColumnProps>`
+	background: #282828;
 	display: flex;
 	flex: 0 0 auto;
 	flex-flow: column;

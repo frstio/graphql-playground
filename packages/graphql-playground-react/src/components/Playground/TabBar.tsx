@@ -100,9 +100,10 @@ export default connect(
 
 const StyledTabBar = styled.div`
 	color: white;
-	height: 57px;
+	height: 50px;
 	background: ${p => p.theme.editorColours.background};
 	overflow: hidden;
+	padding: 0 5px;
 	-webkit-app-region: drag;
 	&:hover {
 		overflow-x: overlay;
@@ -120,6 +121,7 @@ const Tabs = styled.div<TabsProps>`
 	align-items: center;
 	margin-top: 16px;
 	padding-left: ${p => (p.isApp ? '43px' : '0')};
+	box-shadow: rgba(255, 255, 255, 0.05) 0px -148px 10px -146px inset;
 `
 
 interface PlusProps {
@@ -131,13 +133,13 @@ const Plus = styled.div<PlusProps>`
 	box-sizing: border-box;
 	display: flex;
 	visibility: ${p => (p.sorting ? 'hidden' : 'visible')};
-	height: 43px;
-	width: 43px;
+	height: 30px;
+	width: 30px;
 	border-radius: 2px;
-	border-bottom: 2px solid ${p => p.theme.editorColours.navigationBar};
 	background: ${p => p.theme.editorColours.tabInactive};
 	justify-content: center;
 	align-items: center;
+	cursor: pointer;
 	svg {
 		stroke: ${p => p.theme.editorColours.icon};
 	}

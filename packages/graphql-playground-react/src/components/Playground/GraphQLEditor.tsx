@@ -206,19 +206,6 @@ class GraphQLEditor extends React.PureComponent<Props & ReduxProps> {
 									>
 										Query Variables
 									</VariableEditorSubtitle>
-									<VariableEditorSubtitle
-										isOpen={
-											!this.props.queryVariablesActive
-										}
-										ref={this.setHttpHeadersRef}
-										onClick={this.props.closeQueryVariables}
-									>
-										{'HTTP Headers ' +
-											(this.props.headersCount &&
-											this.props.headersCount > 0
-												? `(${this.props.headersCount})`
-												: '')}
-									</VariableEditorSubtitle>
 								</VariableEditorTitle>
 								{this.props.queryVariablesActive ? (
 									<VariableEditorComponent
@@ -307,10 +294,6 @@ class GraphQLEditor extends React.PureComponent<Props & ReduxProps> {
 
 	setQueryVariablesRef = ref => {
 		this.queryVariablesRef = ref
-	}
-
-	setHttpHeadersRef = ref => {
-		this.httpHeadersRef = ref
 	}
 
 	setQueryResizer = ref => {
@@ -679,11 +662,12 @@ const ResultWrap = styled.div`
 `
 
 const DragBar = styled.div`
-	width: 15px;
+	width: 5px;
 	position: absolute;
 	top: 0;
 	bottom: 0;
 	cursor: col-resize;
+	background: ${p => p.theme.editorColours.dragBarColor};
 `
 
 const QueryDragBar = styled(DragBar)`
@@ -722,8 +706,10 @@ const BottomDrawerTitle = styled.div`
 	letter-spacing: 0.53px;
 	line-height: 14px;
 	font-size: 14px;
-	padding: 14px 14px 15px 21px;
+	padding: 11px 14px 12px 21px;
 	user-select: none;
+	border-top: 1px solid rgb(24, 26, 31);
+	border-bottom: 1px solid rgb(24, 26, 31);
 `
 
 const VariableEditor = styled(BottomDrawer)`
@@ -781,7 +767,6 @@ const QueryWrap = styled.div<QueryProps>`
 	display: flex;
 	flex-direction: column;
 	flex: ${props => props.flex} 1 0%;
-	border-top: 8px solid ${props => props.theme.editorColours.resultBackground};
 `
 
 const Intro = styled.div`

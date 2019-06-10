@@ -8,6 +8,7 @@ import {
 	toggleDocs,
 	changeKeyMove,
 	setDocsVisible,
+	changeWidthDocs,
 } from '../../../state/docs/actions'
 import { GraphQLSchema } from 'graphql'
 import { getSessionDocs } from '../../../state/docs/selectors'
@@ -255,6 +256,7 @@ const mapDispatchToProps = dispatch =>
 			toggleDocs,
 			changeKeyMove,
 			setDocsVisible,
+			changeWidthDocs,
 		},
 		dispatch,
 	)
@@ -321,8 +323,6 @@ const TabContentContainer = styled.div`
 	&::before {
 		top: 0;
 		bottom: 0;
-		background: ${props =>
-			props.color ? props.theme.colours[props.color] : '#3D5866'};
 		position: absolute;
 		z-index: 3;
 		left: 0px;
@@ -360,11 +360,5 @@ const TabsGradient = styled.div`
 	z-index: 1;
 	pointer-events: none;
 	content: '';
-	background: ${p =>
-		p.index === 0
-			? `linear-gradient(
-		to right,
-		rgba(255, 255, 255, 1) 30%,
-		rgba(255, 255, 255, 0))`
-			: `transparent`};
+	background: 'transparent';
 `

@@ -1,6 +1,6 @@
 {
     "name": "@frstio/graphql-playground-react",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "main": "./lib/lib.js",
     "typings": "./lib/lib.d.ts",
     "description": "GraphQL IDE for better development workflows (GraphQL Subscriptions, interactive docs & collaboration).",

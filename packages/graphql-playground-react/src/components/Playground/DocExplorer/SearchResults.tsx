@@ -153,6 +153,7 @@ function isMatch(sourceText, searchValue) {
 }
 
 const NoResult = styled.span`
+	color: white;
 	display: block;
 	margin-top: 16px;
 	margin-left: 16px;

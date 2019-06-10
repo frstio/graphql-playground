@@ -112,5 +112,5 @@ const DocsValueComment = styled.p`
 
 const Brace = styled.span`
 	font-weight: 600;
-	color: ${p => p.theme.colours.darkBlue50};
+	color: ${p => p.theme.editorColours.punctuation};
 `
