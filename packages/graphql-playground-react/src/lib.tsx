@@ -1,8 +1,13 @@
 import PlaygroundWrapper from './components/PlaygroundWrapper'
 import GraphQLEditor from './components/Playground/GraphQLEditor'
 import { store } from './components/GraphQLBinApp'
+import MiddlewareApp from './components/MiddlewareApp'
 
-export { PlaygroundWrapper as Playground, GraphQLEditor }
+export {
+	PlaygroundWrapper as Playground,
+	GraphQLEditor,
+	MiddlewareApp as StatefulPlayground,
+}
 
 export default PlaygroundWrapper
 
