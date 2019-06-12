@@ -41,6 +41,7 @@ export interface PlaygroundWrapperProps {
 	endpoint?: string
 	endpointUrl?: string
 	subscriptionEndpoint?: string
+	workspaceEndpoint?: string
 	setTitle?: boolean
 	settings?: ISettings
 	shareEnabled?: string
@@ -214,6 +215,7 @@ class PlaygroundWrapper extends React.Component<
 			nextProps.endpointUrl !== this.props.endpointUrl ||
 			nextProps.subscriptionEndpoint !==
 				this.props.subscriptionEndpoint ||
+			nextProps.workspaceEndpoint !== this.props.workspaceEndpoint ||
 			nextProps.configString !== this.props.configString ||
 			nextProps.platformToken !== this.props.platformToken ||
 			nextProps.config !== this.props.config
@@ -284,13 +286,11 @@ class PlaygroundWrapper extends React.Component<
 		}, 5000)
 		this.setInitialWorkspace()
 		if (this.props.tabs) {
-			this.props.injectTabs(this.props.tabs)
+			this.props.injectTabs(this.props.tabs as Tab[])
 		} else {
 			const query = getParameterByName('query')
 			if (query) {
-				const endpoint =
-					getParameterByName('endpoint') || this.state.endpoint
-				this.props.injectTabs([{ query, endpoint }])
+				this.props.injectTabs([{ query }])
 			} else {
 				const tabsString = getParameterByName('tabs')
 				if (tabsString) {

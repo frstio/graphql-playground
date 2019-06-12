@@ -18,13 +18,11 @@ test('test MiddleWareApp with tabs', () => {
 				{
 					name: 'Tab 1',
 					query: '{ users { id } }',
-					endpoint: 'https://eu1.prisma.sh/public-asdf/session65/dev',
 					responses: ['{}'],
 				},
 				{
 					name: 'Tab 2',
 					query: '{ users { id } }',
-					endpoint: 'https://eu1.prisma.sh/public-asdf/session65/dev',
 				},
 			]}
 		/>,
@@ -41,7 +39,6 @@ test('test MiddleWareApp with one tab and click execute', () => {
 				{
 					name: 'Tab 1',
 					query: '{ users { id } }',
-					endpoint: 'http://localhost:4000',
 				},
 			]}
 		/>,

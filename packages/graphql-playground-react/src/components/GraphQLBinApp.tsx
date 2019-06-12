@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Provider, connect } from 'react-redux'
-import createStore from '../state/createStore'
+import { createStoreSync } from '../state/createStore'
 import 'isomorphic-fetch'
 import EndpointPopup from './EndpointPopup'
 import { styled, ThemeProvider, theme as styledTheme } from '../styled'
@@ -8,7 +8,7 @@ import { Store } from 'redux'
 import PlaygroundWrapper from './PlaygroundWrapper'
 import { injectState } from '../state/workspace/actions'
 
-export const store: Store<any> = createStore()
+export const store: Store<any> = createStoreSync()
 
 function getParameterByName(name: string): string {
 	const url = window.location.href

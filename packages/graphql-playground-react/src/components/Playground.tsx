@@ -2,7 +2,6 @@ import * as React from 'react'
 import GraphQLEditor from './Playground/GraphQLEditor'
 import TabBar from './Playground/TabBar'
 import { ISettings } from '../types'
-import HistoryPopup from './HistoryPopup'
 import { styled } from '../styled'
 import Settings from './Settings'
 import { PlaygroundSettingsEditor, GraphQLConfigEditor } from './SettingsEditor'
@@ -39,7 +38,6 @@ import {
 	getEndpoint,
 	getIsPollingSchema,
 } from '../state/sessions/selectors'
-import { getHistoryOpen } from '../state/general/selectors'
 import {
 	setLinkCreator,
 	schemaFetcher,
@@ -117,7 +115,6 @@ export interface ReduxProps {
 	isConfigTab: boolean
 	isSettingsTab: boolean
 	isFile: boolean
-	historyOpen: boolean
 	file: string
 	sessionHeaders?: any
 	settings: ISettings
@@ -327,13 +324,8 @@ export class Playground extends React.PureComponent<Props & ReduxProps, State> {
 					</GraphiqlWrapper>
 				</GraphiqlsContainer>
 				<Settings />
-				{this.props.historyOpen && this.renderHistoryPopup()}
 			</PlaygroundContainer>
 		)
-	}
-
-	renderHistoryPopup() {
-		return <HistoryPopup />
 	}
 
 	setRef = (index: number, ref: any) => {
@@ -402,7 +394,6 @@ const mapStateToProps = createStructuredSelector({
 	isConfigTab: getIsConfigTab,
 	isSettingsTab: getIsSettingsTab,
 	isFile: getIsFile,
-	historyOpen: getHistoryOpen,
 	file: getFile,
 	sessionHeaders: getHeaders,
 	settings: getSettings,

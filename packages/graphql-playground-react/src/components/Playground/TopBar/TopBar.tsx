@@ -20,7 +20,6 @@ import {
 	refetchSchema,
 } from '../../../state/sessions/actions'
 import { share } from '../../../state/sharing/actions'
-import { openHistory } from '../../../state/general/actions'
 import { getSettings } from '../../../state/workspace/reducers'
 import { ISettings } from '../../../types'
 
@@ -33,7 +32,6 @@ export interface Props {
 
 	editEndpoint: (value: string) => void
 	prettifyQuery: () => void
-	openHistory: () => void
 	share: () => void
 	refetchSchema: () => void
 
@@ -54,7 +52,6 @@ class TopBar extends React.Component<Props, {}> {
 		return (
 			<TopBarWrapper>
 				<Button onClick={this.props.prettifyQuery}>Prettify</Button>
-				<Button onClick={this.openHistory}>History</Button>
 
 				<Button onClick={this.copyCurlToClipboard}>Copy CURL</Button>
 				{this.props.shareEnabled && (
@@ -77,9 +74,6 @@ class TopBar extends React.Component<Props, {}> {
 		if (e.keyCode === 13) {
 			this.props.refetchSchema()
 		}
-	}
-	openHistory = () => {
-		this.props.openHistory()
 	}
 	getCurl = () => {
 		// no need to rerender the whole time. only on-demand the store is fetched
@@ -133,7 +127,6 @@ export default connect(
 	{
 		editEndpoint,
 		prettifyQuery,
-		openHistory,
 		share,
 		refetchSchema,
 	},

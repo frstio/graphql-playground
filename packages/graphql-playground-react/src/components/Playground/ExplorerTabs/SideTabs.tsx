@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
+import { connect, ConnectedComponentClass } from 'react-redux'
 import keycode from 'keycode'
 import { getLeft } from 'graphiql/dist/utility/elementPosition'
 import {
@@ -46,6 +46,7 @@ export interface Props {
 	maxWidth: number
 	setWidth: (props?: any) => any
 	setActiveContentRef: (ref: any) => void
+	Tab: SideTab
 }
 
 export interface SideTabContentProps {
@@ -266,7 +267,19 @@ const mapStateToProps = createStructuredSelector({
 	sessionId: getSelectedSessionIdFromRoot,
 })
 
-const ConnectedGraphDocs = connect<StateFromProps, DispatchFromProps, Props>(
+interface IConnectedGraphDocs
+	extends ConnectedComponentClass<
+		any,
+		Props & StateFromProps & DispatchFromProps
+	> {
+	Tab?: any
+}
+
+const ConnectedGraphDocs: IConnectedGraphDocs = connect<
+	StateFromProps,
+	DispatchFromProps,
+	Props
+>(
 	mapStateToProps,
 	mapDispatchToProps,
 	null,

@@ -30,7 +30,7 @@ export function getSelectedWorkspace(state) {
 
 export class Workspace extends Record({
 	docs: Map({}),
-	sessions: makeSessionState(''),
+	sessions: makeSessionState(),
 	sharing: new SharingState(),
 	history: OrderedMap(),
 }) {
@@ -60,7 +60,7 @@ export const defaultSettings: ISettings = {
 
 // tslint:disable-next-line:max-classes-per-file
 export class RootState extends Record({
-	workspaces: Map({ '': makeWorkspace('') }),
+	workspaces: Map({ '': makeWorkspace() }),
 	selectedWorkspace: '',
 	settingsString: JSON.stringify(defaultSettings, null, 2),
 	stateInjected: false,
@@ -95,11 +95,11 @@ export const rootReducer = (state = new RootState(), action) => {
 	}
 
 	if (action.type === 'INIT_STATE' && !state.stateInjected) {
-		const { workspaceId, endpoint } = action.payload
+		const { workspaceId } = action.payload
 		if (!state.workspaces.get(workspaceId)) {
 			const newState = state.setIn(
 				['workspaces', workspaceId],
-				makeWorkspace(endpoint),
+				makeWorkspace(),
 			)
 			return newState.set('selectedWorkspace', workspaceId)
 		}
@@ -143,7 +143,6 @@ export const rootReducer = (state = new RootState(), action) => {
 }
 
 function makeStateFromTabs(tabs: Tab[]): RootState {
-	const endpoint = tabs[0].endpoint
 	const tabSessions = OrderedMap(
 		tabs.map(sessionFromTab).reduce(
 			(acc, curr) => {
@@ -153,16 +152,16 @@ function makeStateFromTabs(tabs: Tab[]): RootState {
 		),
 	)
 	const selectedSessionId = tabSessions.first<Session>()!.id
-	const workspace = makeWorkspace(endpoint)
+	const workspace = makeWorkspace()
 		.setIn(['sessions', 'sessions'], tabSessions)
 		.setIn(['sessions', 'selectedSessionId'], selectedSessionId)
 	return new RootState()
-		.setIn(['workspaces', endpoint], workspace)
-		.set('selectedWorkspace', endpoint)
+		.setIn(['workspaces', ''], workspace)
+		.set('selectedWorkspace', '')
 }
 
-export function makeWorkspace(endpoint) {
-	const sessionState = makeSessionState(endpoint)
+export function makeWorkspace() {
+	const sessionState = makeSessionState()
 
 	// weird typescript error
 	return new Workspace({

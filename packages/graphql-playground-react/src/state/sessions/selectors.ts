@@ -7,7 +7,7 @@ function getSelectedWorkspaceId(state) {
 function getSelectedWorkspace(state) {
 	return (
 		state.getIn(['workspaces', getSelectedWorkspaceId(state)]) ||
-		makeWorkspace('')
+		makeWorkspace()
 	)
 }
 

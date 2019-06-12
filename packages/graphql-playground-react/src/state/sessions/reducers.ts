@@ -36,7 +36,6 @@ export interface SessionStateProps {
 }
 
 export interface Tab {
-	endpoint: string
 	query: string
 	name?: string
 	variables?: string
@@ -177,8 +176,8 @@ export class SessionState extends Record({
 	headers: string
 }
 
-export function makeSessionState(endpoint) {
-	const session = new Session({ endpoint: endpoint || '' })
+export function makeSessionState() {
+	const session = new Session({ endpoint: '' })
 
 	return new SessionState({
 		sessions: OrderedMap({ [session.id]: session }),
@@ -621,7 +620,7 @@ const reducer = handleActions(
 			)
 		},
 	},
-	makeSessionState(''),
+	makeSessionState(),
 )
 
 // add a self-healing wrapper to clean up broken states
