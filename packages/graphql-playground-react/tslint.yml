@@ -1,0 +1,61 @@
+extends: "tslint:recommended"
+rules:
+  semicolon:
+    severity: warning
+    options: "never"
+
+  indent:
+    severity: warning
+    options: ["tabs", 4]
+
+  quotemark:
+    options:
+      - jsx-double
+      - jsx-single
+      - single
+
+  variable-name:
+    - true
+    - check-format
+    - allow-pascal-case
+    - allow-leading-underscore
+
+  arrow-parens: false
+
+  max-classes-per-file: false
+
+  member-access: false
+  member-ordering: false
+
+  ordered-imports:
+    severity: warning
+
+  object-literal-key-quotes:
+    options: as-needed
+
+  object-literal-sort-keys: false
+  interface-name: false
+
+  max-line-length: [true, 120]
+  trailing-comma: false
+
+  no-empty-interface: false
+
+  new-parens: true
+  no-empty: false
+  no-arg: true
+  no-bitwise: true
+  no-conditional-assignment: true
+  no-consecutive-blank-lines: false
+  no-console:
+    severity: warning
+    options:
+      - debug
+      - info
+      - log
+      - time
+      - timeEnd
+      - trace
+jsRules:
+  max-line-length:
+    options: [120]
