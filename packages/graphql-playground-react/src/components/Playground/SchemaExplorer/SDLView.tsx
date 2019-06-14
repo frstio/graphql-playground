@@ -130,5 +130,5 @@ export default connect<StateFromProps, DispatchFromProps, SideTabContentProps>(
 	mapStateToProps,
 	mapDispatchToProps,
 	null,
-	{ withRef: true },
+	{ forwardRef: true },
 )(SDLView)

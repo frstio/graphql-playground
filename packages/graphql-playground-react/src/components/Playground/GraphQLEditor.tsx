@@ -1,72 +1,69 @@
+import { GraphQLSchema, isNamedType } from 'graphql'
+import { List } from 'immutable'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import { isNamedType, GraphQLSchema } from 'graphql'
-import { List } from 'immutable'
 
 // Query & Response Components
+import CodeMirrorSizer from 'graphiql/dist/utility/CodeMirrorSizer'
+import { getLeft, getTop } from 'graphiql/dist/utility/elementPosition'
+import { fillLeafs } from 'graphiql/dist/utility/fillLeafs'
+import Spinner from '../Spinner'
+import EditorWrapper, { Container } from './EditorWrapper'
 import ExecuteButton from './ExecuteButton'
 import QueryEditor from './QueryEditor'
-import EditorWrapper, { Container } from './EditorWrapper'
-import CodeMirrorSizer from 'graphiql/dist/utility/CodeMirrorSizer'
-import TopBar from './TopBar/TopBar'
-import {
-	VariableEditorComponent,
-	HeadersEditorComponent,
-} from './VariableEditor'
-import Spinner from '../Spinner'
 import Results from './Results'
-import { fillLeafs } from 'graphiql/dist/utility/fillLeafs'
-import { getLeft, getTop } from 'graphiql/dist/utility/elementPosition'
+import TopBar from './TopBar/TopBar'
+import { HeadersEditorComponent, VariableEditorComponent } from './VariableEditor'
 
 // Explorer Components
+import GraphDocs from './DocExplorer/GraphDocs'
 import SideTab from './ExplorerTabs/SideTab'
 import SideTabs from './ExplorerTabs/SideTabs'
 import SDLView from './SchemaExplorer/SDLView'
-import GraphDocs from './DocExplorer/GraphDocs'
 
 import { styled } from '../../styled/index'
 
 // Redux Dependencies
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
+import { changeWidthDocs } from '../../state/docs/actions'
+import { getDocsOpen } from '../../state/docs/selectors'
 import {
-	getQueryRunning,
-	getResponses,
-	getSubscriptionActive,
-	getVariableEditorOpen,
-	getVariableEditorHeight,
-	getResponseTracingOpen,
-	getResponseTracingHeight,
-	getResponseExtensions,
-	getCurrentQueryStartTime,
-	getCurrentQueryEndTime,
-	getTracingSupported,
-	getEditorFlex,
-	getQueryVariablesActive,
-	getHeaders,
-	getOperations,
-	getOperationName,
-	getHeadersCount,
-	getSelectedSessionIdFromRoot,
-} from '../../state/sessions/selectors'
-import {
-	updateQueryFacts,
-	stopQuery,
-	runQueryAtPosition,
 	closeQueryVariables,
-	openQueryVariables,
-	openVariables,
-	closeVariables,
-	openTracing,
 	closeTracing,
-	toggleTracing,
-	setEditorFlex,
-	toggleVariables,
+	closeVariables,
 	fetchSchema,
+	openQueryVariables,
+	openTracing,
+	openVariables,
+	runQueryAtPosition,
+	setEditorFlex,
+	stopQuery,
+	toggleTracing,
+	toggleVariables,
+	updateQueryFacts,
 } from '../../state/sessions/actions'
 import { ResponseRecord } from '../../state/sessions/reducers'
-import { getDocsOpen } from '../../state/docs/selectors'
-import { changeWidthDocs } from '../../state/docs/actions'
+import {
+	getCurrentQueryEndTime,
+	getCurrentQueryStartTime,
+	getEditorFlex,
+	getHeaders,
+	getHeadersCount,
+	getOperationName,
+	getOperations,
+	getQueryRunning,
+	getQueryVariablesActive,
+	getResponseExtensions,
+	getResponses,
+	getResponseTracingHeight,
+	getResponseTracingOpen,
+	getSelectedSessionIdFromRoot,
+	getSubscriptionActive,
+	getTracingSupported,
+	getVariableEditorHeight,
+	getVariableEditorOpen,
+} from '../../state/sessions/selectors'
 /**
  * The top-level React component for GraphQLEditor, intended to encompass the entire
  * browser viewport.
@@ -151,7 +148,7 @@ class GraphQLEditor extends React.PureComponent<Props & ReduxProps> {
 
 		// Utility for keeping CodeMirror correctly sized.
 		this.codeMirrorSizer = new CodeMirrorSizer()
-		;(global as any).g = this
+		; (global as any).g = this
 	}
 
 	componentDidUpdate() {
@@ -172,21 +169,13 @@ class GraphQLEditor extends React.PureComponent<Props & ReduxProps> {
 		return (
 			<Container ref={this.setContainerComponent}>
 				<EditorWrapper>
-					<TopBar
-						shareEnabled={this.props.shareEnabled}
-						fixedEndpoint={this.props.fixedEndpoint}
-					/>
-					<EditorBar
-						ref={this.setEditorBarComponent}
-						onMouseDown={this.handleResizeStart}
-					>
+					<TopBar shareEnabled={this.props.shareEnabled} fixedEndpoint={this.props.fixedEndpoint} />
+					<EditorBar ref={this.setEditorBarComponent} onMouseDown={this.handleResizeStart}>
 						<QueryWrap flex={this.props.editorFlex}>
 							<QueryEditor
 								getRef={this.setQueryEditorComponent}
 								schema={this.props.schema}
-								onHintInformationRender={
-									this.handleHintInformationRender
-								}
+								onHintInformationRender={this.handleHintInformationRender}
 								onRunQuery={this.runQueryAtCursor}
 								onClickReference={this.handleClickReference}
 							/>
@@ -211,8 +200,7 @@ class GraphQLEditor extends React.PureComponent<Props & ReduxProps> {
 										getRef={this.setVariableEditorComponent}
 										onHintInformationRender={
 											this.props.queryVariablesActive
-												? this
-														.handleHintInformationRender
+												? this.handleHintInformationRender
 												: undefined
 										}
 										onRunQuery={this.runQueryAtCursor}
@@ -222,8 +210,7 @@ class GraphQLEditor extends React.PureComponent<Props & ReduxProps> {
 										getRef={this.setVariableEditorComponent}
 										onHintInformationRender={
 											this.props.queryVariablesActive
-												? this
-														.handleHintInformationRender
+												? this.handleHintInformationRender
 												: undefined
 										}
 										onRunQuery={this.runQueryAtCursor}
@@ -235,32 +222,18 @@ class GraphQLEditor extends React.PureComponent<Props & ReduxProps> {
 						<ResultWrap>
 							<ResultDragBar ref={this.setResponseResizer} />
 							<ExecuteButton />
-							{this.props.queryRunning &&
-								this.props.responses.size === 0 && <Spinner />}
+							{this.props.queryRunning && this.props.responses.size === 0 && <Spinner />}
 							<Results setRef={this.setResultComponent} />
-							{!this.props.queryRunning &&
-								(!this.props.responses ||
-									this.props.responses.size === 0) && (
-									<Intro>
-										Hit the Play Button to get a response
-										here
-									</Intro>
-								)}
-							{this.props.subscriptionActive && (
-								<Listening>Listening &hellip;</Listening>
+							{!this.props.queryRunning && (!this.props.responses || this.props.responses.size === 0) && (
+								<Intro>Hit the Play Button to get a response here</Intro>
 							)}
+							{this.props.subscriptionActive && <Listening>Listening &hellip;</Listening>}
 						</ResultWrap>
 					</EditorBar>
 				</EditorWrapper>
-				<SideTabs
-					setActiveContentRef={this.setSideTabActiveContentRef}
-					setWidth={this.setDocsWidth}
-				>
+				<SideTabs setActiveContentRef={this.setSideTabActiveContentRef} setWidth={this.setDocsWidth}>
 					<SideTab label="Docs" activeColor="green" tabWidth="49px">
-						<GraphDocs
-							schema={this.props.schema}
-							ref={this.setDocExplorerRef}
-						/>
+						<GraphDocs schema={this.props.schema} ref={this.setDocExplorerRef} />
 					</SideTab>
 					<SideTab label="Schema" activeColor="blue" tabWidth="65px">
 						<SDLView
@@ -324,9 +297,7 @@ class GraphQLEditor extends React.PureComponent<Props & ReduxProps> {
 
 	handleClickReference = reference => {
 		if (this.docExplorerComponent) {
-			this.docExplorerComponent.showDocFromType(
-				reference.field || reference,
-			)
+			this.docExplorerComponent.showDocFromType(reference.field || reference)
 		}
 	}
 
@@ -343,10 +314,7 @@ class GraphQLEditor extends React.PureComponent<Props & ReduxProps> {
 	 * @public
 	 */
 	autoCompleteLeafs() {
-		const { insertions, result } = fillLeafs(
-			this.props.schema,
-			this.props.query,
-		) as {
+		const { insertions, result } = fillLeafs(this.props.schema, this.props.query) as {
 			insertions: Array<{ index: number; string: string }>
 			result: string
 		}
@@ -362,9 +330,7 @@ class GraphQLEditor extends React.PureComponent<Props & ReduxProps> {
 					const markers = insertions.map(({ index, string }) =>
 						editor.markText(
 							editor.posFromIndex(index + added),
-							editor.posFromIndex(
-								index + (added += string.length),
-							),
+							editor.posFromIndex(index + (added += string.length)),
 							{
 								className: 'autoInsertedLeaf',
 								clearOnEnter: true,
@@ -372,10 +338,7 @@ class GraphQLEditor extends React.PureComponent<Props & ReduxProps> {
 							},
 						),
 					)
-					setTimeout(
-						() => markers.forEach(marker => marker.clear()),
-						7000,
-					)
+					setTimeout(() => markers.forEach(marker => marker.clear()), 7000)
 				} catch (e) {
 					//
 				}
@@ -453,10 +416,7 @@ class GraphQLEditor extends React.PureComponent<Props & ReduxProps> {
 
 	private didClickDragBar(event) {
 		// Only for primary unmodified clicks
-		return (
-			event.target === this.queryResizer ||
-			event.target === this.responseResizer
-		)
+		return event.target === this.queryResizer || event.target === this.responseResizer
 	}
 
 	private handleVariableResizeStart = downEvent => {
@@ -467,11 +427,7 @@ class GraphQLEditor extends React.PureComponent<Props & ReduxProps> {
 		const hadHeight = this.props.variableEditorHeight
 		const offset = downEvent.clientY - getTop(downEvent.target)
 
-		if (
-			wasOpen &&
-			(downEvent.target === this.queryVariablesRef ||
-				downEvent.target === this.httpHeadersRef)
-		) {
+		if (wasOpen && (downEvent.target === this.queryVariablesRef || downEvent.target === this.httpHeadersRef)) {
 			return
 		}
 
@@ -535,10 +491,7 @@ class GraphQLEditor extends React.PureComponent<Props & ReduxProps> {
 		requestAnimationFrame(() => {
 			const width = this.activeSideTabContent.getWidth()
 			const maxWidth = this.containerComponent.getWidth() - 86
-			this.props.changeWidthDocs(
-				props.sessionId,
-				Math.min(width, maxWidth),
-			)
+			this.props.changeWidthDocs(props.sessionId, Math.min(width, maxWidth))
 		})
 	}
 }
@@ -586,7 +539,7 @@ connect<any, any, any>(
 	},
 	null,
 	{
-		withRef: true,
+		forwardRef: true,
 	},
 )(GraphQLEditor)
 
@@ -670,9 +623,7 @@ const VariableEditor = styled(BottomDrawer)`
 	}
 `
 
-const VariableEditorTitle = styled(({ isOpen, ...rest }) => (
-	<BottomDrawerTitle {...rest} />
-))`
+const VariableEditorTitle = styled(({ isOpen, ...rest }) => <BottomDrawerTitle {...rest} />)`
 	cursor: ${p => (p.isOpen ? 'row-resize' : 'n-resize')};
 	background: ${p => p.theme.editorColours.leftDrawerBackground};
 `
@@ -680,10 +631,7 @@ const VariableEditorTitle = styled(({ isOpen, ...rest }) => (
 const VariableEditorSubtitle = styled.span<TitleProps>`
 	margin-right: 10px;
 	cursor: pointer;
-	color: ${p =>
-		p.isOpen
-			? p.theme.editorColours.drawerText
-			: p.theme.editorColours.drawerTextInactive};
+	color: ${p => (p.isOpen ? p.theme.editorColours.drawerText : p.theme.editorColours.drawerTextInactive)};
 	&:last-child {
 		margin-right: 0;
 	}
@@ -708,8 +656,7 @@ const Intro = styled.div`
 	transform: translate(-50%, -50%);
 	color: ${p => p.theme.colours.textInactive};
 	font-size: ${p => p.theme.sizes.small16};
-	font-family: 'Source Code Pro', 'Consolas', 'Inconsolata', 'Droid Sans Mono',
-		'Monaco', monospace;
+	font-family: 'Source Code Pro', 'Consolas', 'Inconsolata', 'Droid Sans Mono', 'Monaco', monospace;
 	text-align: center;
 	letter-spacing: 0.6px;
 `

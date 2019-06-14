@@ -1,19 +1,13 @@
-import * as React from 'react'
-import { bindActionCreators } from 'redux'
-import { connect, ConnectedComponentClass } from 'react-redux'
-import keycode from 'keycode'
 import { getLeft } from 'graphiql/dist/utility/elementPosition'
-import {
-	addStack,
-	toggleDocs,
-	changeKeyMove,
-	setDocsVisible,
-	changeWidthDocs,
-} from '../../../state/docs/actions'
 import { GraphQLSchema } from 'graphql'
+import keycode from 'keycode'
+import * as React from 'react'
+import { connect, ConnectedComponentClass } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { createStructuredSelector } from 'reselect'
+import { addStack, changeKeyMove, changeWidthDocs, setDocsVisible, toggleDocs } from '../../../state/docs/actions'
 import { getSessionDocs } from '../../../state/docs/selectors'
 import { getSelectedSessionIdFromRoot } from '../../../state/sessions/selectors'
-import { createStructuredSelector } from 'reselect'
 import { styled } from '../../../styled'
 import SideTab from './SideTab'
 
@@ -30,11 +24,7 @@ interface StateFromProps {
 interface DispatchFromProps {
 	addStack: (sessionId: string, field: any, x: number, y: number) => any
 	toggleDocs: (sessionId: string, activeTabIdx?: number | null) => any
-	setDocsVisible: (
-		sessionId: string,
-		open: boolean,
-		idx?: number | null,
-	) => any
+	setDocsVisible: (sessionId: string, open: boolean, idx?: number | null) => any
 	changeWidthDocs: (sessionId: string, width: number) => any
 	changeKeyMove: (sessionId: string, move: boolean) => any
 }
@@ -60,35 +50,25 @@ export interface State {
 	widthMap: any
 }
 
-class SideTabs extends React.Component<
-	Props & StateFromProps & DispatchFromProps,
-	State
-> {
+class SideTabs extends React.Component<Props & StateFromProps & DispatchFromProps, State> {
 	ref
 	private refContentContainer: any
 	private clientX: number = 0
 	private clientY: number = 0
 	constructor(props) {
 		super(props)
-		;(window as any).d = this
+		; (window as any).d = this
 	}
 
 	componentDidUpdate(prevProps) {
 		if (!prevProps.docs.activeTabIdx && this.props.docs.activeTabIdx) {
-			this.props.setDocsVisible(
-				this.props.sessionId,
-				true,
-				this.props.docs.activeTabIdx,
-			)
+			this.props.setDocsVisible(this.props.sessionId, true, this.props.docs.activeTabIdx)
 		}
 		if (prevProps.activeTabIdx && !this.props.docs.activeTabIdx) {
 			this.props.setDocsVisible(this.props.sessionId, false)
 		}
 		this.props.setWidth()
-		if (
-			this.props.docs.activeTabIdx !== prevProps.docs.activeTabIdx &&
-			this.refContentContainer
-		) {
+		if (this.props.docs.activeTabIdx !== prevProps.docs.activeTabIdx && this.refContentContainer) {
 			this.refContentContainer.focus()
 		}
 	}
@@ -104,23 +84,18 @@ class SideTabs extends React.Component<
 		const { docsOpen, docsWidth, activeTabIdx } = this.props.docs
 		const docsStyle = { width: docsOpen ? docsWidth : 0 }
 		const activeTab =
-			docsOpen &&
-			(React.Children.toArray(this.props.children)[
-				activeTabIdx
-			] as React.ReactElement<any>)
+			docsOpen && (React.Children.toArray(this.props.children)[activeTabIdx] as React.ReactElement<any>)
 		return (
 			<Tabs open={docsOpen} style={docsStyle} ref={this.setRef}>
 				<TabsContainer>
-					{React.Children.toArray(this.props.children).map(
-						(child: React.ReactElement<any>, index) => {
-							return React.cloneElement(child, {
-								...child.props,
-								key: index,
-								onClick: this.handleTabClick(index),
-								active: index === activeTabIdx,
-							})
-						},
-					)}
+					{React.Children.toArray(this.props.children).map((child: React.ReactElement<any>, index) => {
+						return React.cloneElement(child, {
+							...child.props,
+							key: index,
+							onClick: this.handleTabClick(index),
+							active: index === activeTabIdx,
+						})
+					})}
 				</TabsContainer>
 				<TabContentResizer onMouseDown={this.handleDocsResizeStart} />
 				<TabsGradient index={activeTabIdx} />
@@ -156,11 +131,7 @@ class SideTabs extends React.Component<
 			return this.props.setWidth()
 		}
 		if (this.props.docs.activeTabIdx !== idx) {
-			this.props.setDocsVisible(
-				this.props.sessionId,
-				false,
-				this.props.docs.activeTabIdx,
-			)
+			this.props.setDocsVisible(this.props.sessionId, false, this.props.docs.activeTabIdx)
 			this.props.setDocsVisible(this.props.sessionId, true, idx)
 			return this.props.setWidth()
 		} else {
@@ -171,13 +142,7 @@ class SideTabs extends React.Component<
 
 	private handleKeyDown = e => {
 		// we don't want to interfere with inputs
-		if (
-			e.target instanceof HTMLInputElement ||
-			e.metaKey ||
-			e.shiftKey ||
-			e.altKey ||
-			e.ctrlKey
-		) {
+		if (e.target instanceof HTMLInputElement || e.metaKey || e.shiftKey || e.altKey || e.ctrlKey) {
 			return
 		}
 		const keyPressed = keycode(e)
@@ -208,17 +173,9 @@ class SideTabs extends React.Component<
 			const docsSize = maxSize < newSize ? maxSize : newSize
 
 			if (docsSize < 100) {
-				this.props.setDocsVisible(
-					this.props.sessionId,
-					false,
-					this.props.docs.activeTabIdx,
-				)
+				this.props.setDocsVisible(this.props.sessionId, false, this.props.docs.activeTabIdx)
 			} else {
-				this.props.setDocsVisible(
-					this.props.sessionId,
-					true,
-					this.props.docs.activeTabIdx,
-				)
+				this.props.setDocsVisible(this.props.sessionId, true, this.props.docs.activeTabIdx)
 				this.props.changeWidthDocs(this.props.sessionId, docsSize)
 			}
 		}
@@ -240,11 +197,7 @@ class SideTabs extends React.Component<
 	private handleMouseMove = e => {
 		this.clientX = e.clientX
 		this.clientY = e.clientY
-		if (
-			this.props.docs.keyMove &&
-			this.clientX !== e.clientX &&
-			this.clientY !== e.clientY
-		) {
+		if (this.props.docs.keyMove && this.clientX !== e.clientX && this.clientY !== e.clientY) {
 			this.props.changeKeyMove(this.props.sessionId, false)
 		}
 	}
@@ -267,23 +220,15 @@ const mapStateToProps = createStructuredSelector({
 	sessionId: getSelectedSessionIdFromRoot,
 })
 
-interface IConnectedGraphDocs
-	extends ConnectedComponentClass<
-		any,
-		Props & StateFromProps & DispatchFromProps
-	> {
+interface IConnectedGraphDocs extends ConnectedComponentClass<any, Props & StateFromProps & DispatchFromProps> {
 	Tab?: any
 }
 
-const ConnectedGraphDocs: IConnectedGraphDocs = connect<
-	StateFromProps,
-	DispatchFromProps,
-	Props
->(
+const ConnectedGraphDocs: IConnectedGraphDocs = connect<StateFromProps, DispatchFromProps, Props>(
 	mapStateToProps,
 	mapDispatchToProps,
 	null,
-	{ withRef: true },
+	{ forwardRef: true },
 )(SideTabs)
 
 ConnectedGraphDocs.Tab = SideTab

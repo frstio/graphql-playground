@@ -1,6 +1,7 @@
 import cuid from 'cuid'
-import { getQueryTypes } from './components/Playground/util/getQueryTypes'
 import { List, Map } from 'immutable'
+import { getQueryTypes } from './components/Playground/util/getQueryTypes'
+import { OperationDefinition, QueryTypes, ResponseRecord, VariableToType } from './state/sessions/reducers'
 
 export const columnWidth = 300
 
@@ -124,7 +125,63 @@ export const modalStyle = {
 	},
 }
 
-export function getDefaultSession(endpoint: string) {
+export interface ISession {
+	id: string
+	endpoint: string
+
+	query: string
+	file?: string
+	variables: string
+	responses?: List<ResponseRecord>
+	operationName?: string
+	queryRunning: boolean
+	subscriptionActive: boolean
+
+	// query facts
+	operations: List<OperationDefinition>
+	variableToType: VariableToType
+
+	// additional props that are interactive in graphiql, these are not represented in graphiqls state
+	queryTypes: QueryTypes
+	date: Date
+	hasMutation: boolean
+	hasSubscription: boolean
+	hasQuery: boolean
+
+	isFile?: boolean
+	starred?: boolean
+	name?: string
+	filePath?: string
+	selectedUserToken?: string
+	headers?: string
+	absolutePath?: string
+	isSettingsTab?: boolean
+	isConfigTab?: boolean
+
+	currentQueryStartTime?: Date
+	currentQueryEndTime?: Date
+
+	isReloadingSchema: boolean
+	isSchemaPendingUpdate: boolean
+
+	responseExtensions: any
+	queryVariablesActive: boolean
+	endpointUnreachable: boolean
+
+	// editor settings
+	editorFlex: number
+	variableEditorOpen: boolean
+	variableEditorHeight: number
+	responseTracingOpen: boolean
+	responseTracingHeight: number
+	nextQueryStartTime?: Date
+	tracingSupported?: boolean
+	docExplorerWidth: number
+	changed?: boolean
+	scrollTop?: number
+}
+
+export function getDefaultSession(endpoint: string): ISession {
 	return {
 		id: cuid(),
 		query: defaultQuery,
@@ -159,7 +216,6 @@ export function getDefaultSession(endpoint: string) {
 		name: undefined,
 		filePath: undefined,
 		selectedUserToken: undefined,
-		hasChanged: undefined,
 		absolutePath: undefined,
 		isSettingsTab: undefined,
 		isConfigTab: undefined,
@@ -169,5 +225,5 @@ export function getDefaultSession(endpoint: string) {
 		tracingSupported: undefined,
 		changed: undefined,
 		scrollTop: undefined,
-	} as any
+	}
 }

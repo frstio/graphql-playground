@@ -279,7 +279,7 @@ export default connect<StateFromProps, DispatchFromProps, SideTabContentProps>(
 	mapStateToProps,
 	mapDispatchToProps,
 	null,
-	{ withRef: true },
+	{ forwardRef: true },
 )(GraphDocs)
 
 const DocsExplorerContainer = styled.div`

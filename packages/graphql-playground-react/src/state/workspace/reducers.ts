@@ -1,21 +1,22 @@
+import { Map, OrderedMap, Record } from 'immutable'
 import { Reducer } from 'redux'
 import { combineReducers } from 'redux-immutable'
-import docs, { DocsSession, DocsState } from '../docs/reducers'
+import { createSelector } from 'reselect'
+import { immutableMemoize } from '../../components/Playground/util/immutableMemoize'
+import appHistory, { AppHistory } from '../appHistory/reducers'
+import docs, { DocsSession, DocsSessionState, DocsState } from '../docs/reducers'
+import general, { GeneralState } from '../general/reducers'
+import history, { HistoryState } from '../history/reducers'
 import sessions, {
 	makeSessionState,
-	SessionState,
-	Tab,
-	sessionFromTab,
 	Session,
+	sessionFromTab,
+	SessionState,
+	SessionStateProps,
+	Tab,
 } from '../sessions/reducers'
 import sharing, { SharingState } from '../sharing/reducers'
-import history, { HistoryState } from '../history/reducers'
-import { Map, Record, OrderedMap } from 'immutable'
-import general, { GeneralState } from '../general/reducers'
-import { immutableMemoize } from '../../components/Playground/util/immutableMemoize'
-import { createSelector } from 'reselect'
 import { deserializePersistedState } from './deserialize'
-import appHistory, { AppHistory } from '../appHistory/reducers'
 // import { createSelector } from 'reselect'
 
 import { ISettings } from '../../types'
@@ -29,16 +30,11 @@ export function getSelectedWorkspace(state) {
 }
 
 export class Workspace extends Record({
-	docs: Map({}),
+	docs: Map<string, DocsSessionState>(),
 	sessions: makeSessionState(),
 	sharing: new SharingState(),
-	history: OrderedMap(),
-}) {
-	docs: DocsState
-	sessions: SessionState
-	sharing: SharingState
-	history: HistoryState
-}
+	history: OrderedMap<string, SessionStateProps>(),
+}) {}
 
 export const defaultSettings: ISettings = {
 	'editor.cursorShape': 'line',
@@ -60,20 +56,13 @@ export const defaultSettings: ISettings = {
 
 // tslint:disable-next-line:max-classes-per-file
 export class RootState extends Record({
-	workspaces: Map({ '': makeWorkspace() }),
+	workspaces: Map<string, Workspace>([['', makeWorkspace()]]),
 	selectedWorkspace: '',
 	settingsString: JSON.stringify(defaultSettings, null, 2),
 	stateInjected: false,
 	appHistory: new AppHistory(),
 	general: new GeneralState(),
-}) {
-	workspaces: Map<string, Workspace>
-	selectedWorkspace: string
-	settingsString: string
-	stateInjected: false
-	appHistory: AppHistory
-	general: GeneralState
-}
+}) {}
 
 const workspaceReducers: Reducer<any> = combineReducers({
 	docs,
@@ -97,20 +86,14 @@ export const rootReducer = (state = new RootState(), action) => {
 	if (action.type === 'INIT_STATE' && !state.stateInjected) {
 		const { workspaceId } = action.payload
 		if (!state.workspaces.get(workspaceId)) {
-			const newState = state.setIn(
-				['workspaces', workspaceId],
-				makeWorkspace(),
-			)
+			const newState = state.setIn(['workspaces', workspaceId], makeWorkspace())
 			return newState.set('selectedWorkspace', workspaceId)
 		}
 		return state.set('selectedWorkspace', workspaceId)
 	}
 
 	if (action.type === 'INJECT_STATE') {
-		return deserializePersistedState(action.payload.state).set(
-			'stateInjected',
-			true,
-		)
+		return deserializePersistedState(action.payload.state).set('stateInjected', true)
 	}
 
 	if (action.type === 'INJECT_TABS') {
@@ -133,9 +116,7 @@ export const rootReducer = (state = new RootState(), action) => {
 	}
 
 	const selectedWorkspaceId =
-		action.payload && action.payload.workspaceId
-			? action.payload.workspaceId
-			: getSelectedWorkspaceId(state)
+		action.payload && action.payload.workspaceId ? action.payload.workspaceId : getSelectedWorkspaceId(state)
 
 	const path = ['workspaces', selectedWorkspaceId]
 
@@ -155,9 +136,7 @@ function makeStateFromTabs(tabs: Tab[]): RootState {
 	const workspace = makeWorkspace()
 		.setIn(['sessions', 'sessions'], tabSessions)
 		.setIn(['sessions', 'selectedSessionId'], selectedSessionId)
-	return new RootState()
-		.setIn(['workspaces', ''], workspace)
-		.set('selectedWorkspace', '')
+	return new RootState().setIn(['workspaces', ''], workspace).set('selectedWorkspace', '')
 }
 
 export function makeWorkspace() {
@@ -171,7 +150,7 @@ export function makeWorkspace() {
 		sessions: sessionState,
 		sharing: new SharingState(),
 		history: OrderedMap(),
-	}) as any
+	})
 }
 
 export default rootReducer
