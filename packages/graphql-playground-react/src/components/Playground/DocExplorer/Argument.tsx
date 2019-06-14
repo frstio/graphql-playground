@@ -1,5 +1,5 @@
-import * as React from 'react'
 import { astFromValue, print } from 'graphql'
+import * as React from 'react'
 import TypeLink from './TypeLink'
 
 export interface Props {

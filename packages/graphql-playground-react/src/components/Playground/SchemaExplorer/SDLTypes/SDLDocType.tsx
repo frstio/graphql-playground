@@ -1,6 +1,6 @@
 import * as React from 'react'
-import SDLType from './SDLType'
 import { styled } from '../../../../styled'
+import SDLType from './SDLType'
 
 export interface DocTypeSchemaProps {
 	type: any

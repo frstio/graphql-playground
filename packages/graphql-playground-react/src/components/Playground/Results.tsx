@@ -1,12 +1,12 @@
+import { List } from 'immutable'
 import * as React from 'react'
-import ageOfDate from './util/ageOfDate'
-import { ResultViewer } from './ResultViewer'
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
-import { getResponses } from '../../state/sessions/selectors'
-import { List } from 'immutable'
-import { styled } from '../../styled'
 import { ResponseRecord } from '../../state/sessions/reducers'
+import { getResponses } from '../../state/sessions/selectors'
+import { styled } from '../../styled'
+import { ResultViewer } from './ResultViewer'
+import ageOfDate from './util/ageOfDate'
 
 export interface Props {
 	setRef: (ref: any) => void

@@ -1,7 +1,7 @@
-import PlaygroundWrapper from './components/PlaygroundWrapper'
-import GraphQLEditor from './components/Playground/GraphQLEditor'
 import { store } from './components/GraphQLBinApp'
 import MiddlewareApp from './components/MiddlewareApp'
+import GraphQLEditor from './components/Playground/GraphQLEditor'
+import PlaygroundWrapper from './components/PlaygroundWrapper'
 
 export {
 	PlaygroundWrapper as Playground,

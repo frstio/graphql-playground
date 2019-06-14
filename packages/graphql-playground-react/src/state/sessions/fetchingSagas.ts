@@ -1,43 +1,43 @@
 import { ApolloLink, execute } from 'apollo-link'
-import { parseHeaders } from '../../components/Playground/util/parseHeaders'
-import { SubscriptionClient } from 'subscriptions-transport-ws'
 import { HttpLink } from 'apollo-link-http'
 import { WebSocketLink } from 'apollo-link-ws'
-import { isSubscription } from '../../components/Playground/util/hasSubscription'
+import cuid from 'cuid'
+import { set } from 'immutable'
+import { END, eventChannel } from 'redux-saga'
 import {
-	takeLatest,
 	ForkEffect,
 	put,
 	select,
-	takeEvery,
 	take,
+	takeEvery,
+	takeLatest,
 } from 'redux-saga/effects'
-import { eventChannel, END } from 'redux-saga'
+import { SubscriptionClient } from 'subscriptions-transport-ws'
+import { SchemaFetcher } from '../../components/Playground/SchemaFetcher'
+import { isSubscription } from '../../components/Playground/util/hasSubscription'
 import { makeOperation } from '../../components/Playground/util/makeOperation'
+import { parseHeaders } from '../../components/Playground/util/parseHeaders'
+import { safely } from '../../utils'
+import { addHistoryItem } from '../history/actions'
+import { getSelectedWorkspaceId, getSettings } from '../workspace/reducers'
 import {
-	setSubscriptionActive,
-	stopQuery,
-	startQuery,
 	addResponse,
-	setResponseExtensions,
-	setCurrentQueryStartTime,
-	setCurrentQueryEndTime,
-	setEndpointUnreachable,
 	clearResponses,
+	setCurrentQueryEndTime,
+	setCurrentQueryStartTime,
+	setEndpointUnreachable,
 	setResponse,
+	setResponseExtensions,
+	setSubscriptionActive,
+	startQuery,
+	stopQuery,
 } from './actions'
+import { ResponseRecord, Session } from './reducers'
 import {
+	getParsedVariablesFromSession,
 	getSelectedSession,
 	getSessionsState,
-	getParsedVariablesFromSession,
 } from './selectors'
-import { SchemaFetcher } from '../../components/Playground/SchemaFetcher'
-import { getSelectedWorkspaceId, getSettings } from '../workspace/reducers'
-import cuid from 'cuid'
-import { Session, ResponseRecord } from './reducers'
-import { addHistoryItem } from '../history/actions'
-import { safely } from '../../utils'
-import { set } from 'immutable'
 
 // tslint:disable
 let subscriptionEndpoint

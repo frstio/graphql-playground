@@ -1,9 +1,9 @@
 import * as React from 'react'
+import { styled } from '../../../styled'
 import ColumnDoc from './ColumnDoc'
-import SearchResults from './SearchResults'
 import GraphDocsRoot from './GraphDocsRoot'
 import SearchBox from './SearchBox'
-import { styled } from '../../../styled'
+import SearchResults from './SearchResults'
 
 export interface Props {
 	searchValue: string

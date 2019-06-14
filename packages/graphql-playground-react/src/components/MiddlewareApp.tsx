@@ -1,12 +1,12 @@
 import * as React from 'react'
-import styled from 'styled-components'
 import { Provider } from 'react-redux'
-import createStore from '../state/createStore'
-import { getSettings } from '../state/workspace/reducers'
-import { setSettingsString } from '../state/general/actions'
-import PlaygroundWrapper, { PlaygroundWrapperProps } from './PlaygroundWrapper'
-import { Store } from 'redux'
 import { ClipLoader } from 'react-spinners'
+import { Store } from 'redux'
+import styled from 'styled-components'
+import createStore from '../state/createStore'
+import { setSettingsString } from '../state/general/actions'
+import { getSettings } from '../state/workspace/reducers'
+import PlaygroundWrapper, { PlaygroundWrapperProps } from './PlaygroundWrapper'
 
 interface MiddlewareState {
 	store?: Store<any>

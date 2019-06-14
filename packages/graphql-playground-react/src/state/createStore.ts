@@ -1,9 +1,9 @@
-import { compose, createStore, Store, applyMiddleware } from 'redux'
+import { applyMiddleware, compose, createStore, Store } from 'redux'
 import createSagaMiddleware from 'redux-saga'
-import rootSaga from './rootSaga'
-import rootReducer from './workspace/reducers'
-import { getSelectedSession } from './sessions/selectors'
 import { deserializeState, serializeState } from './fetchWorkspace'
+import rootSaga from './rootSaga'
+import { getSelectedSession } from './sessions/selectors'
+import rootReducer from './workspace/reducers'
 
 const sagaMiddleware = createSagaMiddleware()
 const functions = [applyMiddleware(sagaMiddleware)]
@@ -23,8 +23,8 @@ export function createStoreSync(
 	)
 
 	store.subscribe(serializeState(store, endpoint || '', headers))
-	;(window as any).s = store
-	;(window as any).session = () => {
+	; (window as any).s = store
+	; (window as any).session = () => {
 		return getSelectedSession(store.getState())
 	}
 
@@ -44,8 +44,8 @@ export default async (
 	)
 
 	store.subscribe(serializeState(store, endpoint, headers))
-	;(window as any).s = store
-	;(window as any).session = () => {
+	; (window as any).s = store
+	; (window as any).session = () => {
 		return getSelectedSession(store.getState())
 	}
 

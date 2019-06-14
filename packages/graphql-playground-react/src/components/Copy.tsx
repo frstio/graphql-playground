@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { styled } from '../styled'
 import CopyToClipboard from 'react-copy-to-clipboard'
+import { styled } from '../styled'
 
 export interface Props {
 	text: string

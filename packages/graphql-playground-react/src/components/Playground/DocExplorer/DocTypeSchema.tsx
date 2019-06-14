@@ -1,7 +1,7 @@
 import { GraphQLInterfaceType } from 'graphql'
 import * as React from 'react'
-import TypeLink from './TypeLink'
 import { styled } from '../../../styled'
+import TypeLink from './TypeLink'
 
 export interface DocTypeSchemaProps {
 	type: any

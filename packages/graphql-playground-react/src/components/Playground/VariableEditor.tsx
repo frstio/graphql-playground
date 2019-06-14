@@ -7,17 +7,17 @@
  */
 
 import * as React from 'react'
-import onHasCompletion from './onHasCompletion'
 import { connect } from 'react-redux'
-import { editVariables, editHeaders } from '../../state/sessions/actions'
+import { createStructuredSelector } from 'reselect'
+import { editHeaders, editVariables } from '../../state/sessions/actions'
+import { VariableToType } from '../../state/sessions/reducers'
 import {
+	getHeaders,
 	getVariables,
 	getVariableToType,
-	getHeaders,
 } from '../../state/sessions/selectors'
-import { createStructuredSelector } from 'reselect'
-import { VariableToType } from '../../state/sessions/reducers'
 import { styled } from '../../styled'
+import onHasCompletion from './onHasCompletion'
 
 /* tslint:disable */
 

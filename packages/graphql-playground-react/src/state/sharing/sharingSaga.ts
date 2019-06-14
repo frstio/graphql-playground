@@ -1,10 +1,10 @@
-import { takeEvery, ForkEffect, select, put } from 'redux-saga/effects'
+import cuid from 'cuid'
+import { Map } from 'immutable'
+import { ForkEffect, put, select, takeEvery } from 'redux-saga/effects'
+import { safely } from '../../utils'
 import { getEndpoint } from '../sessions/selectors'
 import { setShareUrl } from './actions'
-import cuid from 'cuid'
 import { getSharingState } from './selectors'
-import { Map } from 'immutable'
-import { safely } from '../../utils'
 
 function* share() {
 	const state = yield makeSharingState()

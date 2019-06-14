@@ -1,53 +1,53 @@
+import { ApolloLink } from 'apollo-link'
 import * as React from 'react'
+import { GraphQLConfig } from '../graphqlConfig'
+import { styled } from '../styled'
+import { ISettings } from '../types'
+import FileEditor from './FileEditor'
 import GraphQLEditor from './Playground/GraphQLEditor'
 import TabBar from './Playground/TabBar'
-import { ISettings } from '../types'
-import { styled } from '../styled'
 import Settings from './Settings'
-import { PlaygroundSettingsEditor, GraphQLConfigEditor } from './SettingsEditor'
-import { GraphQLConfig } from '../graphqlConfig'
-import FileEditor from './FileEditor'
-import { ApolloLink } from 'apollo-link'
+import { GraphQLConfigEditor, PlaygroundSettingsEditor } from './SettingsEditor'
 
-import * as app from '../../package.json'
+import { GraphQLSchema } from 'graphql'
+import debounce from 'lodash.debounce'
 import { connect } from 'react-redux'
+import { createStructuredSelector } from 'reselect'
+import * as app from '../../package.json'
+import { setConfigString } from '../state/general/actions'
 import {
-	selectTabIndex,
-	selectNextTab,
-	selectPrevTab,
-	newSession,
 	closeSelectedTab,
-	saveSettings,
-	saveConfig,
-	setTracingSupported,
 	injectHeaders,
+	newSession,
+	saveConfig,
+	saveSettings,
 	schemaFetchingError,
 	schemaFetchingSuccess,
+	selectNextTab,
+	selectPrevTab,
+	selectTabIndex,
+	setTracingSupported,
 } from '../state/sessions/actions'
-import { setConfigString } from '../state/general/actions'
-import { initState } from '../state/workspace/actions'
-import { GraphQLSchema } from 'graphql'
-import { createStructuredSelector } from 'reselect'
 import {
-	getIsConfigTab,
-	getIsSettingsTab,
-	getIsFile,
-	getFile,
-	getHeaders,
-	getIsReloadingSchema,
-	getEndpoint,
-	getIsPollingSchema,
-} from '../state/sessions/selectors'
-import {
-	setLinkCreator,
 	schemaFetcher,
+	setLinkCreator,
 	setSubscriptionEndpoint,
 } from '../state/sessions/fetchingSagas'
 import { Session } from '../state/sessions/reducers'
-import { getWorkspaceId } from './Playground/util/getWorkspaceId'
+import {
+	getEndpoint,
+	getFile,
+	getHeaders,
+	getIsConfigTab,
+	getIsFile,
+	getIsPollingSchema,
+	getIsReloadingSchema,
+	getIsSettingsTab,
+} from '../state/sessions/selectors'
+import { initState } from '../state/workspace/actions'
 import { getSettings, getSettingsString } from '../state/workspace/reducers'
 import { Backoff } from './Playground/util/fibonacci-backoff'
-import debounce from 'lodash.debounce'
+import { getWorkspaceId } from './Playground/util/getWorkspaceId'
 import { cachedPrintSchema } from './util'
 
 export interface Response {
@@ -179,7 +179,7 @@ export class Playground extends React.PureComponent<Props & ReduxProps, State> {
 		this.state = {
 			schema: props.schema,
 		}
-		;(global as any).p = this
+		; (global as any).p = this
 
 		if (typeof this.props.getRef === 'function') {
 			this.props.getRef(this)

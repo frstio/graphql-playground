@@ -1,15 +1,15 @@
 import * as React from 'react'
-import TracingRow from './TracingRow'
-import styled from '../../styled/styled'
+import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 import {
-	getTracing,
-	getCurrentQueryStartTime,
 	getCurrentQueryEndTime,
-	getTracingSupported,
+	getCurrentQueryStartTime,
 	getQueryRunning,
+	getTracing,
+	getTracingSupported,
 } from '../../state/sessions/selectors'
-import { connect } from 'react-redux'
+import styled from '../../styled/styled'
+import TracingRow from './TracingRow'
 
 export interface TracingFormat {
 	version: 1

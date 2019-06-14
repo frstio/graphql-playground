@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { styled } from '../../../../styled'
 import { columnWidth } from '../../../../constants'
+import { styled } from '../../../../styled'
 
 export const SchemaExplorerContainer = styled.div`
 	position: relative;

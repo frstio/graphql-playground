@@ -1,8 +1,8 @@
 import * as React from 'react'
-import HistoryChooser from './HistoryChooser'
-import { HistoryFilter } from '../../types'
 import { styled } from '../../styled'
+import { HistoryFilter } from '../../types'
 import SearchBox from '../Playground/DocExplorer/SearchBox'
+import HistoryChooser from './HistoryChooser'
 
 export interface Props {
 	selectedFilter: HistoryFilter

@@ -1,43 +1,43 @@
+import { parse } from 'graphql'
+import { fromJS, is } from 'immutable'
+import * as queryString from 'query-string'
+import { delay } from 'redux-saga'
 import {
-	takeLatest,
-	ForkEffect,
 	call,
+	ForkEffect,
+	put,
 	select,
 	takeEvery,
-	put,
+	takeLatest,
 } from 'redux-saga/effects'
-import { delay } from 'redux-saga'
-import { getSelectedSession, getIsPollingSchema } from './selectors'
-import getSelectedOperationName from '../../components/Playground/util/getSelectedOperationName'
 import { getQueryFacts } from '../../components/Playground/util/getQueryFacts'
-import { fromJS, is } from 'immutable'
+import { getQueryTypes } from '../../components/Playground/util/getQueryTypes'
+import getSelectedOperationName from '../../components/Playground/util/getSelectedOperationName'
+import { getNewStack, getRootMap } from '../../components/Playground/util/stack'
+import { prettify, safely } from '../../utils'
+import { setStacks } from '../docs/actions'
+import { DocsSessionState } from '../docs/reducers'
+import { getSessionDocsState } from '../docs/selectors'
+import { addHistoryItem } from '../history/actions'
+import { HistoryState } from '../history/reducers'
+import { getSelectedWorkspace, getSettings } from '../workspace/reducers'
 import {
 	editQuery,
-	setVariableToType,
-	setOperations,
-	setOperationName,
-	schemaFetchingSuccess,
-	schemaFetchingError,
-	// fetchSchema,
-	runQuery,
-	setTracingSupported,
-	setQueryTypes,
-	refetchSchema,
 	fetchSchema,
+	refetchSchema,
+	runQuery,
+	schemaFetchingError,
+	schemaFetchingSuccess,
+	// fetchSchema,
+	setOperationName,
+	setOperations,
+	setQueryTypes,
+	setTracingSupported,
+	setVariableToType,
 } from './actions'
-import { getRootMap, getNewStack } from '../../components/Playground/util/stack'
-import { DocsSessionState } from '../docs/reducers'
-import { setStacks } from '../docs/actions'
-import { HistoryState } from '../history/reducers'
-import { addHistoryItem } from '../history/actions'
 import { schemaFetcher } from './fetchingSagas'
-import { getSelectedWorkspace, getSettings } from '../workspace/reducers'
-import { getSessionDocsState } from '../docs/selectors'
-import { getQueryTypes } from '../../components/Playground/util/getQueryTypes'
-import { parse } from 'graphql'
 import { Session } from './reducers'
-import { safely, prettify } from '../../utils'
-import * as queryString from 'query-string'
+import { getIsPollingSchema, getSelectedSession } from './selectors'
 
 function* setQueryFacts() {
 	// debounce by 100 ms

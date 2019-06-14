@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect'
-import { DocsSession } from './reducers'
 import { getSelectedWorkspace } from '../workspace/reducers'
+import { DocsSession } from './reducers'
 
 export const getSessionDocsState = createSelector(
 	[getSelectedWorkspace],

@@ -1,5 +1,5 @@
-import * as prettier from 'prettier/standalone'
 import * as graphql from 'prettier/parser-graphql'
+import * as prettier from 'prettier/standalone'
 // tslint:disable
 
 export function safely(cb: any) {

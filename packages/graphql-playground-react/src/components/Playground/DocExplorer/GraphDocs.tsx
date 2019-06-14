@@ -1,31 +1,31 @@
-import * as React from 'react'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
 import keycode from 'keycode'
-import FieldDoc from './FieldDoc'
-import ColumnDoc from './ColumnDoc'
+import * as React from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { createStructuredSelector } from 'reselect'
+import { columnWidth } from '../../../constants'
 import {
 	addStack,
-	toggleDocs,
-	changeWidthDocs,
 	changeKeyMove,
+	changeWidthDocs,
 	setDocsVisible,
+	toggleDocs,
 } from '../../../state/docs/actions'
-import Spinner from '../../Spinner'
-import { columnWidth } from '../../../constants'
-import RootColumn from './RootColumn'
-import {
-	serialize,
-	getElementRoot,
-	serializeRoot,
-	getElement,
-} from '../util/stack'
 import { getSessionDocs } from '../../../state/docs/selectors'
 import { getSelectedSessionIdFromRoot } from '../../../state/sessions/selectors'
-import { createStructuredSelector } from 'reselect'
-import { SideTabContentProps } from '../ExplorerTabs/SideTabs'
-import { ErrorContainer } from './ErrorContainer'
 import { styled } from '../../../styled'
+import Spinner from '../../Spinner'
+import { SideTabContentProps } from '../ExplorerTabs/SideTabs'
+import {
+	getElement,
+	getElementRoot,
+	serialize,
+	serializeRoot,
+} from '../util/stack'
+import ColumnDoc from './ColumnDoc'
+import { ErrorContainer } from './ErrorContainer'
+import FieldDoc from './FieldDoc'
+import RootColumn from './RootColumn'
 
 interface StateFromProps {
 	docs: {
@@ -62,7 +62,7 @@ class GraphDocs extends React.Component<
 			searchValue: '',
 			widthMap: {},
 		}
-		;(window as any).d = this
+		; (window as any).d = this
 	}
 
 	componentWillReceiveProps(nextProps: SideTabContentProps & StateFromProps) {

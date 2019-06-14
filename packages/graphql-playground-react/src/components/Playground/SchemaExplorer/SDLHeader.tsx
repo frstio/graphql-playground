@@ -1,7 +1,7 @@
+import { GraphQLSchema } from 'graphql'
 import * as React from 'react'
 import { styled } from '../../../styled'
 import { Button } from '../TopBar/TopBar'
-import { GraphQLSchema } from 'graphql'
 import { downloadSchema } from '../util/createSDL'
 
 interface SDLHeaderProps {

@@ -1,24 +1,24 @@
 import * as React from 'react'
-import { ShareIcon } from './Icons'
-import ToggleButton from './ToggleButton'
-import Tooltip from './Tooltip'
-import { Button } from './Button'
-import Copy from './Copy'
-import { keyframes, styled, ThemeInterface, withTheme } from '../styled'
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 import {
-	getSharingHistory,
-	getSharingHeaders,
-	getSharingAllTabs,
-	getShareUrl,
-} from '../state/sharing/selectors'
-import {
-	toggleShareHistory,
-	toggleShareHeaders,
-	toggleShareAllTabs,
 	share,
+	toggleShareAllTabs,
+	toggleShareHeaders,
+	toggleShareHistory,
 } from '../state/sharing/actions'
+import {
+	getShareUrl,
+	getSharingAllTabs,
+	getSharingHeaders,
+	getSharingHistory,
+} from '../state/sharing/selectors'
+import { keyframes, styled, ThemeInterface, withTheme } from '../styled'
+import { Button } from './Button'
+import Copy from './Copy'
+import { ShareIcon } from './Icons'
+import ToggleButton from './ToggleButton'
+import Tooltip from './Tooltip'
 
 export interface SharingProps {
 	allTabs: boolean

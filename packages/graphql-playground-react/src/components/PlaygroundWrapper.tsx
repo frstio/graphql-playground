@@ -1,30 +1,30 @@
-import * as React from 'react'
-import Playground, { Playground as IPlayground } from './Playground'
-import { Helmet } from 'react-helmet'
-import { GraphQLConfig } from '../graphqlConfig'
+import { ApolloLink } from 'apollo-link'
+import { buildClientSchema, buildSchema, GraphQLSchema } from 'graphql'
 import * as yaml from 'js-yaml'
-import ProjectsSideNav from './ProjectsSideNav'
+import * as React from 'react'
+import { Helmet } from 'react-helmet'
+import { connect } from 'react-redux'
+import { GraphQLConfig } from '../graphqlConfig'
+import { Session, Tab } from '../state/sessions/reducers'
+import { injectTabs } from '../state/workspace/actions'
+import { getSettings, getTheme } from '../state/workspace/reducers'
 import {
-	styled,
-	ThemeProvider,
-	theme as styledTheme,
 	keyframes,
+	styled,
+	theme as styledTheme,
+	ThemeProvider,
 } from '../styled'
 import {
 	darkColours,
-	lightColours,
-	frstEditorColours,
 	EditorColours,
+	frstEditorColours,
+	lightColours,
 } from '../styled/theme'
+import { ISettings } from '../types'
+import Playground, { Playground as IPlayground } from './Playground'
+import ProjectsSideNav from './ProjectsSideNav'
 // import OldThemeProvider from './Theme/ThemeProvider'
 import { getActiveEndpoints } from './util'
-import { ISettings } from '../types'
-import { connect } from 'react-redux'
-import { getTheme, getSettings } from '../state/workspace/reducers'
-import { Session, Tab } from '../state/sessions/reducers'
-import { ApolloLink } from 'apollo-link'
-import { injectTabs } from '../state/workspace/actions'
-import { buildSchema, buildClientSchema, GraphQLSchema } from 'graphql'
 
 function getParameterByName(name: string, uri?: string): string | null {
 	const url = uri || window.location.href
@@ -96,7 +96,7 @@ class PlaygroundWrapper extends React.Component<
 	playground: IPlayground
 	constructor(props: PlaygroundWrapperProps & ReduxProps) {
 		super(props)
-		;(global as any).m = this
+		; (global as any).m = this
 
 		this.state = this.mapPropsToState(props)
 		this.removeLoader()
@@ -581,11 +581,11 @@ async function find(
 }
 
 const appearIn = keyframes`
-  from { 
+  from {
     opacity: 0;
     transform: translateY(10px);
   }
-  to { 
+  to {
     opacity: 1;
     transform: translateY(0);
   }

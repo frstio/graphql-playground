@@ -6,23 +6,23 @@
  *  LICENSE file in the root directory of this source tree.
  */
 
-import * as React from 'react'
 import { GraphQLSchema } from 'graphql'
 import MD from 'markdown-it'
+import * as React from 'react'
 import { connect } from 'react-redux'
-import onHasCompletion from './onHasCompletion'
-import { editQuery, setScrollTop } from '../../state/sessions/actions'
 import { createStructuredSelector } from 'reselect'
+import { editQuery, setScrollTop } from '../../state/sessions/actions'
 import {
 	getQuery,
-	getSelectedSessionIdFromRoot,
 	getScrollTop,
+	getSelectedSessionIdFromRoot,
 	getTabWidth,
 	getUseTabs,
 } from '../../state/sessions/selectors'
-import EditorWrapper from './EditorWrapper'
 import { styled } from '../../styled'
 import { isIframe } from '../../utils'
+import EditorWrapper from './EditorWrapper'
+import onHasCompletion from './onHasCompletion'
 /**
  * QueryEditor
  *
@@ -171,7 +171,7 @@ export class QueryEditor extends React.PureComponent<Props & ReduxProps, {}> {
 		this.editor.on('change', this.onEdit)
 		this.editor.on('keyup', this.onKeyUp)
 		this.editor.on('hasCompletion', this.onHasCompletion)
-		;(global as any).editor = this.editor
+		; (global as any).editor = this.editor
 
 		if (this.props.scrollTop) {
 			this.scrollTo(this.props.scrollTop)

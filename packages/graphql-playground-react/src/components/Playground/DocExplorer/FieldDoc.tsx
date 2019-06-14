@@ -1,20 +1,20 @@
-import * as React from 'react'
-import Argument from './Argument'
-import {
-	GraphQLInterfaceType,
-	GraphQLEnumType,
-	GraphQLUnionType,
-	GraphQLScalarType,
-} from 'graphql'
 import MarkdownContent from 'graphiql/dist/components/DocExplorer/MarkdownContent'
-import TypeLink from './TypeLink'
-import DocTypeSchema from './DocTypeSchema'
-import ScalarTypeSchema from './DocsTypes/ScalarType'
-import EnumTypeSchema from './DocsTypes/EnumTypeSchema'
-import UnionTypeSchema from './DocsTypes/UnionTypeSchema'
-import { getDeeperType, serialize } from '../util/stack'
-import { CategoryTitle } from './DocsStyles'
+import {
+	GraphQLEnumType,
+	GraphQLInterfaceType,
+	GraphQLScalarType,
+	GraphQLUnionType,
+} from 'graphql'
+import * as React from 'react'
 import { styled } from '../../../styled'
+import { getDeeperType, serialize } from '../util/stack'
+import Argument from './Argument'
+import { CategoryTitle } from './DocsStyles'
+import EnumTypeSchema from './DocsTypes/EnumTypeSchema'
+import ScalarTypeSchema from './DocsTypes/ScalarType'
+import UnionTypeSchema from './DocsTypes/UnionTypeSchema'
+import DocTypeSchema from './DocTypeSchema'
+import TypeLink from './TypeLink'
 
 export interface Props {
 	schema: any

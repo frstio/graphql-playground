@@ -1,10 +1,10 @@
 import * as React from 'react'
-import ReloadIcon from './Reload'
-import Polling from './Polling'
-import { ISettings } from '../../../types'
+import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 import { getIsReloadingSchema } from '../../../state/sessions/selectors'
-import { connect } from 'react-redux'
+import { ISettings } from '../../../types'
+import Polling from './Polling'
+import ReloadIcon from './Reload'
 
 export interface Props {
 	isPollingSchema: boolean

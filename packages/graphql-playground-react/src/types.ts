@@ -1,4 +1,4 @@
-import { Observable, FetchResult } from 'apollo-link'
+import { FetchResult, Observable } from 'apollo-link'
 
 export type ApolloLinkExecuteResponse = Observable<FetchResult>
 

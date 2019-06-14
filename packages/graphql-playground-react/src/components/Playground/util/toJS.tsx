@@ -1,5 +1,5 @@
-import * as React from 'react'
 import { isImmutable } from 'immutable'
+import * as React from 'react'
 export const toJS = WrappedComponent => wrappedComponentProps => {
 	const KEY = 0
 	const VALUE = 1

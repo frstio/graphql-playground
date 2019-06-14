@@ -1,27 +1,27 @@
+import copy from 'copy-to-clipboard'
 import * as React from 'react'
 import { styled } from '../../../styled/index'
-import copy from 'copy-to-clipboard'
 
-import Share from '../../Share'
+import * as PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 // import SchemaReload from './SchemaReload'
 import { createStructuredSelector } from 'reselect'
-import {
-	getEndpoint,
-	getSelectedSession,
-	getEndpointUnreachable,
-	getIsPollingSchema,
-} from '../../../state/sessions/selectors'
-import { connect } from 'react-redux'
 import { getFixedEndpoint } from '../../../state/general/selectors'
-import * as PropTypes from 'prop-types'
 import {
 	editEndpoint,
 	prettifyQuery,
 	refetchSchema,
 } from '../../../state/sessions/actions'
+import {
+	getEndpoint,
+	getEndpointUnreachable,
+	getIsPollingSchema,
+	getSelectedSession,
+} from '../../../state/sessions/selectors'
 import { share } from '../../../state/sharing/actions'
 import { getSettings } from '../../../state/workspace/reducers'
 import { ISettings } from '../../../types'
+import Share from '../../Share'
 
 export interface Props {
 	endpoint: string

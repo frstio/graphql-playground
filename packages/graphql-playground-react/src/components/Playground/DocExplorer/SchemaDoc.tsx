@@ -8,8 +8,8 @@
 
 import * as React from 'react'
 
-import TypeLink from 'graphiql/dist/components/DocExplorer/TypeLink'
 import MarkdownContent from 'graphiql/dist/components/DocExplorer/MarkdownContent'
+import TypeLink from 'graphiql/dist/components/DocExplorer/TypeLink'
 
 export interface Props {
 	schema: any

@@ -1,26 +1,26 @@
 import * as React from 'react'
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { createStructuredSelector } from 'reselect'
+import { columnWidth } from '../../../constants'
 import {
-	toggleDocs,
 	changeWidthDocs,
 	setDocsVisible,
+	toggleDocs,
 } from '../../../state/docs/actions'
-import Spinner from '../../Spinner'
-import { columnWidth } from '../../../constants'
-import { SideTabContentProps } from '../ExplorerTabs/SideTabs'
-import {
-	getSelectedSessionIdFromRoot,
-	getIsPollingSchema,
-} from '../../../state/sessions/selectors'
 import { getSessionDocs } from '../../../state/docs/selectors'
-import { createStructuredSelector } from 'reselect'
-import { ErrorContainer } from '../DocExplorer/ErrorContainer'
-import { SchemaExplorerContainer, SDLColumn } from './SDLTypes/SDLStyles'
-import SDLHeader from './SDLHeader'
-import SDLEditor from './SDLEditor'
+import {
+	getIsPollingSchema,
+	getSelectedSessionIdFromRoot,
+} from '../../../state/sessions/selectors'
 import { getSettings } from '../../../state/workspace/reducers'
 import { ISettings } from '../../../types'
+import Spinner from '../../Spinner'
+import { ErrorContainer } from '../DocExplorer/ErrorContainer'
+import { SideTabContentProps } from '../ExplorerTabs/SideTabs'
+import SDLEditor from './SDLEditor'
+import SDLHeader from './SDLHeader'
+import { SchemaExplorerContainer, SDLColumn } from './SDLTypes/SDLStyles'
 
 interface StateFromProps {
 	docs: {
@@ -45,7 +45,7 @@ class SDLView extends React.Component<
 	ref
 	constructor(props) {
 		super(props)
-		;(window as any).d = this
+		; (window as any).d = this
 	}
 	componentWillReceiveProps(nextProps: SideTabContentProps & StateFromProps) {
 		// If user use default column size % columnWidth

@@ -1,18 +1,18 @@
-import * as React from 'react'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
 import { GraphQLList, GraphQLNonNull, isType } from 'graphql'
-import ArgumentInline from './ArgumentInline'
-import { Triangle } from '../../Icons'
-import { toJS } from '../util/toJS'
+import * as React from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { createSelector } from 'reselect'
 import { addStack } from '../../../state/docs/actions'
 import { getSessionDocsState } from '../../../state/docs/selectors'
 import {
 	// getSelectedSessionId,
 	getSelectedSessionIdFromRoot,
 } from '../../../state/sessions/selectors'
-import { createSelector } from 'reselect'
 import { styled } from '../../../styled'
+import { Triangle } from '../../Icons'
+import { toJS } from '../util/toJS'
+import ArgumentInline from './ArgumentInline'
 
 interface ReduxProps {
 	keyMove: boolean

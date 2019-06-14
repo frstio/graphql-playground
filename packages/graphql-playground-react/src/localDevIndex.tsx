@@ -1,11 +1,11 @@
+import { ApolloLink } from 'apollo-link'
+import { HttpLink } from 'apollo-link-http'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import MiddlewareApp from './components/MiddlewareApp'
 import './index.css'
 // import { Tab } from './state/sessions/reducers'
 import { LinkCreatorProps } from './state/sessions/fetchingSagas'
-import { ApolloLink } from 'apollo-link'
-import { HttpLink } from 'apollo-link-http'
 // import { exampleSchema } from './fixtures/exampleSchema'
 
 if (process.env.NODE_ENV !== 'production') {

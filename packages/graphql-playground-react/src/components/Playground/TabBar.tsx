@@ -1,21 +1,21 @@
 import * as React from 'react'
-import { styled } from '../../styled'
-import { AddIcon } from '../Icons'
-import Tab, { Props as TabProps } from './Tab'
 import { connect } from 'react-redux'
-import { createStructuredSelector } from 'reselect'
-import {
-	getSessionsArray,
-	getSelectedSessionIdFromRoot,
-} from '../../state/sessions/selectors'
-import { Session } from '../../state/sessions/reducers'
-import { reorderTabs } from '../../state/sessions/actions'
 import {
 	SortableContainer,
 	SortableElement,
-	SortStart,
 	SortEnd,
+	SortStart,
 } from 'react-sortable-hoc'
+import { createStructuredSelector } from 'reselect'
+import { reorderTabs } from '../../state/sessions/actions'
+import { Session } from '../../state/sessions/reducers'
+import {
+	getSelectedSessionIdFromRoot,
+	getSessionsArray,
+} from '../../state/sessions/selectors'
+import { styled } from '../../styled'
+import { AddIcon } from '../Icons'
+import Tab, { Props as TabProps } from './Tab'
 
 export interface Props {
 	onNewSession: any

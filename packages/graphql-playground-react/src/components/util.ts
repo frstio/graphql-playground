@@ -1,6 +1,6 @@
-import { GraphQLConfig, GraphQLConfigEnpointConfig } from '../graphqlConfig'
 import { GraphQLSchema, printSchema } from 'graphql'
 import LRU from 'lru-cache'
+import { GraphQLConfig, GraphQLConfigEnpointConfig } from '../graphqlConfig'
 
 export function getActiveEndpoints(
 	config: GraphQLConfig,

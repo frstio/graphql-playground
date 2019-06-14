@@ -1,14 +1,14 @@
 import * as React from 'react'
-import { styled } from '../styled'
-import { Button } from './Playground/TopBar/TopBar'
-import { ConfigEditor } from './Playground/ConfigEditor'
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
+import { setConfigString, setSettingsString } from '../state/general/actions'
 import { getConfigString } from '../state/general/selectors'
-import { setSettingsString, setConfigString } from '../state/general/actions'
 import { editSettings, saveSettings } from '../state/sessions/actions'
 import { getSettingsString } from '../state/workspace/reducers'
+import { styled } from '../styled'
+import { ConfigEditor } from './Playground/ConfigEditor'
 import EditorWrapper, { Container } from './Playground/EditorWrapper'
+import { Button } from './Playground/TopBar/TopBar'
 
 export interface Props {
 	value: string

@@ -1,8 +1,8 @@
 import * as React from 'react'
-import TypeLink from './TypeLink'
+import { styled } from '../../../styled'
 import { serializeRoot } from '../util/stack'
 import { CategoryTitle } from './DocsStyles'
-import { styled } from '../../../styled'
+import TypeLink from './TypeLink'
 
 export interface Props {
 	schema: any

@@ -1,4 +1,4 @@
-import { isType, GraphQLInterfaceType, GraphQLObjectType } from 'graphql'
+import { GraphQLInterfaceType, GraphQLObjectType, isType } from 'graphql'
 import { Map } from 'immutable'
 
 export function getNewStack(root, schema, stack: Map<any, any>) {
@@ -101,7 +101,7 @@ export function serializeRoot(schema): SerializedRoot {
 			return field
 		})
 	}
-	;(window as any).ss = schema
+	(window as any).ss = schema
 	const subscriptionType =
 		schema.getSubscriptionType && schema.getSubscriptionType()
 	if (subscriptionType) {

@@ -1,13 +1,13 @@
 import {
 	GraphQLEnumType,
-	GraphQLUnionType,
-	GraphQLInterfaceType,
 	GraphQLInputObjectType,
+	GraphQLInterfaceType,
 	GraphQLSchema,
+	GraphQLUnionType,
 	printSchema,
 } from 'graphql'
-import { serialize } from './stack'
 import { prettify } from '../../../utils'
+import { serialize } from './stack'
 // import { getRootMap } from './stack'
 
 interface Options {
@@ -30,7 +30,7 @@ const defaultTypes = [
 	'Float',
 ]
 
-/* Creates an array of SchemaTypes for the SDLFieldDocs 
+/* Creates an array of SchemaTypes for the SDLFieldDocs
 (A component that is similar to the DocsExplorer) to consume */
 export function sdlArray(schema: GraphQLSchema, options?: Options) {
 	const objectValues =

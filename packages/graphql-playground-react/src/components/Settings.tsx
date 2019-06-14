@@ -1,8 +1,8 @@
 import * as React from 'react'
-import { SettingsIcon } from './Icons'
-import { styled } from '../styled'
-import { openSettingsTab } from '../state/sessions/actions'
 import { connect } from 'react-redux'
+import { openSettingsTab } from '../state/sessions/actions'
+import { styled } from '../styled'
+import { SettingsIcon } from './Icons'
 
 export interface Props {
 	onClick: () => void

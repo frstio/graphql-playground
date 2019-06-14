@@ -1,11 +1,11 @@
-import { DocsSession } from '../docs/reducers'
-import { Session, SessionState, ResponseRecord } from '../sessions/reducers'
-import { SharingState } from '../sharing/reducers'
-import { Map, OrderedMap, List, fromJS } from 'immutable'
-import { GeneralState } from '../general/reducers'
+import { fromJS, List, Map, OrderedMap } from 'immutable'
 import mapValues from 'lodash.mapvalues'
-import { RootState, Workspace, normalizeSettingsString } from './reducers'
 import { AppHistory, AppHistoryItem } from '../appHistory/reducers'
+import { DocsSession } from '../docs/reducers'
+import { GeneralState } from '../general/reducers'
+import { ResponseRecord, Session, SessionState } from '../sessions/reducers'
+import { SharingState } from '../sharing/reducers'
+import { normalizeSettingsString, RootState, Workspace } from './reducers'
 
 export function deserializePersistedState(state) {
 	return new RootState({

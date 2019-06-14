@@ -1,5 +1,5 @@
+import { astFromValue, GraphQLList, GraphQLNonNull, print } from 'graphql'
 import * as React from 'react'
-import { astFromValue, print, GraphQLList, GraphQLNonNull } from 'graphql'
 import { styled } from '../../../styled'
 
 export interface Props {

@@ -1,10 +1,10 @@
 import * as React from 'react'
-import { SettingsIcon, CrossIcon } from '../Icons'
-import { connect } from 'react-redux'
-import { closeTab, selectTab, editName } from '../../state/sessions/actions'
-import { styled } from '../../styled'
-import { Session } from '../../state/sessions/reducers'
 import AutosizeInput from 'react-input-autosize'
+import { connect } from 'react-redux'
+import { closeTab, editName, selectTab } from '../../state/sessions/actions'
+import { Session } from '../../state/sessions/reducers'
+import { styled } from '../../styled'
+import { CrossIcon, SettingsIcon } from '../Icons'
 
 export interface Props {
 	session: Session

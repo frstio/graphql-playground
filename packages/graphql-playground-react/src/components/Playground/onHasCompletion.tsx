@@ -79,7 +79,7 @@ export default function onHasCompletion(cm, data, onHintInformationRender) {
 			}
 
 			wrapper.style.top = `${newTop}px`
-			;(global as any).wrapper = wrapper
+			; (global as any).wrapper = wrapper
 
 			// When CodeMirror attempts to remove the hint UI, we detect that it was
 			// removed from our wrapper and in turn remove the wrapper from the

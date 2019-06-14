@@ -7,16 +7,16 @@
  */
 
 import * as React from 'react'
-import ExecuteButtonOperation from './ExecuteButtonOperation'
-import { styled } from '../../styled'
 import { connect } from 'react-redux'
-import { runQuery, stopQuery } from '../../state/sessions/actions'
 import { createStructuredSelector } from 'reselect'
+import { runQuery, stopQuery } from '../../state/sessions/actions'
 import {
-	getQueryRunning,
 	getOperations,
+	getQueryRunning,
 	getSelectedSessionIdFromRoot,
 } from '../../state/sessions/selectors'
+import { styled } from '../../styled'
+import ExecuteButtonOperation from './ExecuteButtonOperation'
 import { toJS } from './util/toJS'
 
 export interface ReduxProps {

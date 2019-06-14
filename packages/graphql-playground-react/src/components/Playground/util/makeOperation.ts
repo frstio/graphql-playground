@@ -1,6 +1,6 @@
-import { setIn } from 'immutable'
-import { parse } from 'graphql'
 import { Operation } from 'apollo-link'
+import { parse } from 'graphql'
+import { setIn } from 'immutable'
 
 export interface GraphQLRequestData {
 	query: string

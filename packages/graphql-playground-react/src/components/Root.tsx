@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 import GraphQLBinApp from './GraphQLBinApp'
 
 export default class Root extends React.Component<{}, {}> {

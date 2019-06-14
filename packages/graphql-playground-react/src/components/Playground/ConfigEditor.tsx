@@ -1,6 +1,6 @@
 import * as React from 'react'
-import EditorWrapper from './EditorWrapper'
 import { styled } from '../../styled'
+import EditorWrapper from './EditorWrapper'
 
 export interface Props {
 	value?: string

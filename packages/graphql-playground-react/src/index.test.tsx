@@ -1,5 +1,5 @@
+import { mount, render } from 'enzyme'
 import * as React from 'react'
-import { render, mount } from 'enzyme'
 import MiddlewareApp from './components/MiddlewareApp'
 
 test('test MiddleWareApp without tabs', () => {

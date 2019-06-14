@@ -1,5 +1,5 @@
-import TypeLink from '../TypeLink'
 import * as React from 'react'
+import TypeLink from '../TypeLink'
 import { DocType } from './DocType'
 
 export interface EnumTypeSchemaProps {

@@ -1,9 +1,9 @@
-import * as React from 'react'
 import { GraphQLSchema, printSchema } from 'graphql'
-import EditorWrapper from '../EditorWrapper'
+import * as React from 'react'
 import { styled } from '../../../styled'
-import { getSDL } from '../util/createSDL'
 import { ISettings } from '../../../types'
+import EditorWrapper from '../EditorWrapper'
+import { getSDL } from '../util/createSDL'
 
 export interface Props {
 	schema?: GraphQLSchema | null
@@ -61,7 +61,7 @@ class SDLEditor extends React.PureComponent<Props, { overflowY: boolean }> {
 			readOnly: true,
 			gutters,
 		})
-		;(global as any).editor = this.editor
+		; (global as any).editor = this.editor
 		this.editor.on('scroll', this.handleScroll)
 		this.editor.refresh()
 	}

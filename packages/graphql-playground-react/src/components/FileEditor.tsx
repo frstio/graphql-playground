@@ -1,11 +1,11 @@
 import * as React from 'react'
-import { styled } from '../styled'
-import { QueryEditor } from './Playground/QueryEditor'
-import { createStructuredSelector } from 'reselect'
-import { getFile } from '../state/sessions/selectors'
-import { editFile } from '../state/sessions/actions'
-import EditorWrapper, { Container } from './Playground/EditorWrapper'
 import { connect } from 'react-redux'
+import { createStructuredSelector } from 'reselect'
+import { editFile } from '../state/sessions/actions'
+import { getFile } from '../state/sessions/selectors'
+import { styled } from '../styled'
+import EditorWrapper, { Container } from './Playground/EditorWrapper'
+import { QueryEditor } from './Playground/QueryEditor'
 
 export interface Props {
 	value: string

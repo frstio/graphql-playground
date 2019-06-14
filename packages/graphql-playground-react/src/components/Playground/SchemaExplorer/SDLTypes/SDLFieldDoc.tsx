@@ -1,11 +1,11 @@
-import * as React from 'react'
 import MarkdownContent from 'graphiql/dist/components/DocExplorer/MarkdownContent'
-import SDLDocType from './SDLDocType'
-import ScalarTypeSchema from '../../DocExplorer/DocsTypes/ScalarType'
-import EnumTypeSchema from '../../DocExplorer/DocsTypes/EnumTypeSchema'
-import SDLUnionType from './SDLUnionType'
-import { CategoryTitle } from '../../DocExplorer/DocsStyles'
+import * as React from 'react'
 import { styled } from '../../../../styled'
+import { CategoryTitle } from '../../DocExplorer/DocsStyles'
+import EnumTypeSchema from '../../DocExplorer/DocsTypes/EnumTypeSchema'
+import ScalarTypeSchema from '../../DocExplorer/DocsTypes/ScalarType'
+import SDLDocType from './SDLDocType'
+import SDLUnionType from './SDLUnionType'
 
 export interface Props {
 	schema: any

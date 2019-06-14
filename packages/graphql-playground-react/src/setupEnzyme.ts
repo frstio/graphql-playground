@@ -26,15 +26,15 @@ function copyProps(src, target) {
 	Object.defineProperties(target, props)
 }
 
-;(global as any).window = window as any
-;(global as any).document = window.document as any
-;(global as any).navigator = {
+(global as any).window = window as any
+; (global as any).document = window.document as any
+; (global as any).navigator = {
 	userAgent: 'node.js',
 }
 copyProps(window, global)
 
 // TODO: Fix/document this hack
-;(global as any).document.createRange = () => {
+; (global as any).document.createRange = () => {
 	return {
 		setEnd: () => {},
 		setStart: () => {},

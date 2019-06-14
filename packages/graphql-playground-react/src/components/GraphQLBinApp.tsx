@@ -1,12 +1,12 @@
-import * as React from 'react'
-import { Provider, connect } from 'react-redux'
-import { createStoreSync } from '../state/createStore'
 import 'isomorphic-fetch'
-import EndpointPopup from './EndpointPopup'
-import { styled, ThemeProvider, theme as styledTheme } from '../styled'
+import * as React from 'react'
+import { connect, Provider } from 'react-redux'
 import { Store } from 'redux'
-import PlaygroundWrapper from './PlaygroundWrapper'
+import { createStoreSync } from '../state/createStore'
 import { injectState } from '../state/workspace/actions'
+import { styled, theme as styledTheme, ThemeProvider } from '../styled'
+import EndpointPopup from './EndpointPopup'
+import PlaygroundWrapper from './PlaygroundWrapper'
 
 export const store: Store<any> = createStoreSync()
 

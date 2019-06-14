@@ -1,7 +1,7 @@
-import * as React from 'react'
 import debounce from 'graphiql/dist/utility/debounce'
-import { Search } from '../../Icons'
+import * as React from 'react'
 import { styled } from '../../../styled'
+import { Search } from '../../Icons'
 
 export interface Props {
 	onSearch: (value: string) => void

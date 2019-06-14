@@ -610,7 +610,7 @@ export const exampleSchema = {
 					{
 						name: 'mutation_in',
 						description:
-							"The subscription event gets dispatched when it's listed in mutation_in",
+							'The subscription event gets dispatched when it\'s listed in mutation_in',
 						type: {
 							kind: 'LIST',
 							name: null,

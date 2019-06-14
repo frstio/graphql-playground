@@ -1,11 +1,11 @@
-import { GraphQLSchema, introspectionQuery, buildClientSchema } from 'graphql'
-import { NoSchemaError } from './util/NoSchemaError'
 import { ApolloLink, execute } from 'apollo-link'
+import { buildClientSchema, GraphQLSchema, introspectionQuery } from 'graphql'
 import { Map, set } from 'immutable'
-import { makeOperation } from './util/makeOperation'
-import { parseHeaders } from './util/parseHeaders'
-import { LinkCreatorProps } from '../../state/sessions/fetchingSagas'
 import LRU from 'lru-cache'
+import { LinkCreatorProps } from '../../state/sessions/fetchingSagas'
+import { makeOperation } from './util/makeOperation'
+import { NoSchemaError } from './util/NoSchemaError'
+import { parseHeaders } from './util/parseHeaders'
 
 export interface TracingSchemaTuple {
 	schema: GraphQLSchema

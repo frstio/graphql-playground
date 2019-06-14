@@ -1,5 +1,5 @@
-import { ISettings } from '../types'
 import { defaultSettings } from '../state/workspace/reducers'
+import { ISettings } from '../types'
 
 export interface Colours {
 	green: string

@@ -1,7 +1,7 @@
-import * as React from 'react'
 import { GraphQLList, GraphQLNonNull, isType } from 'graphql'
-import ArgumentInline from '../../DocExplorer/ArgumentInline'
+import * as React from 'react'
 import { styled } from '../../../../styled'
+import ArgumentInline from '../../DocExplorer/ArgumentInline'
 
 export interface Props {
 	type: any

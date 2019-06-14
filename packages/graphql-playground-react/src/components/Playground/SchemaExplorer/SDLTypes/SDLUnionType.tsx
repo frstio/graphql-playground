@@ -1,6 +1,6 @@
-import SDLType from './SDLType'
 import * as React from 'react'
 import { DocType } from '../../DocExplorer/DocsTypes/DocType'
+import SDLType from './SDLType'
 
 export interface EnumTypeSchemaProps {
 	schema: any

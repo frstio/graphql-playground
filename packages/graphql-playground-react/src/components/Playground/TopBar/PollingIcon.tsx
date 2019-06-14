@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { styled, keyframes, css } from '../../../styled/index'
+import { css, keyframes, styled } from '../../../styled/index'
 import BasePositioner from './Positioner'
 
 export interface Props {

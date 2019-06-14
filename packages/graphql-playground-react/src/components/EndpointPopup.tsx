@@ -1,9 +1,9 @@
-import * as React from 'react'
 import fetch from 'isomorphic-fetch'
-import Popup from './Popup'
 import throttle from 'lodash.throttle'
+import * as React from 'react'
+import { css, styled } from '../styled'
 import { Button } from './Button'
-import { styled, css } from '../styled'
+import Popup from './Popup'
 
 export interface Props {
 	onRequestClose: (endpoint: string) => void
@@ -146,13 +146,13 @@ const Input = styled.input<InputProps>`
   transition: 250ms color;
 
   ${(p: any) =>
-    p.valid ? css`
+	p.valid ? css`
       color: ${k => k.theme.colours.green};
     `
-    : p.invalid ? css`
+	: p.invalid ? css`
       color: ${k => k.theme.colours.red};
     `
-    : ``
+	: ``
   }
 `
 

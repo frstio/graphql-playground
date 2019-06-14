@@ -1,8 +1,8 @@
+import { OrderedMap } from 'immutable'
 import * as React from 'react'
 import { Session } from '../../state/sessions/reducers'
-import { OrderedMap } from 'immutable'
+import { styled, ThemeInterface, withTheme } from '../../styled'
 import { Star } from '../Icons'
-import { styled, withTheme, ThemeInterface } from '../../styled'
 
 export interface Props {
 	items: OrderedMap<string, Session>

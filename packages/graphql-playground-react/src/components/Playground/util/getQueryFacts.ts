@@ -6,7 +6,7 @@
  *  LICENSE file in the root directory of this source tree.
  */
 
-import { typeFromAST, DocumentNode } from 'graphql'
+import { DocumentNode, typeFromAST } from 'graphql'
 
 /**
  * Provided previous "queryFacts", a GraphQL schema, and a query document

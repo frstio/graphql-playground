@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { styled, createGlobalStyle } from '../../styled'
+import { createGlobalStyle, styled } from '../../styled'
 
 const EditorWrapper = styled.div`
 	/* Comment */
